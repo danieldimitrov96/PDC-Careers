@@ -10,5 +10,9 @@ import { SignupComponent } from './signup/signup.component';
   declarations: [
     LoginComponent,
     SignupComponent],
+  exports: [
+    LoginComponent,
+    SignupComponent,
+  ],
 })
 export class AuthModule { }
