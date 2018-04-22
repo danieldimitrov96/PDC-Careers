@@ -7,22 +7,19 @@
       <p>test3</p>
     </div>
     <div class="col-md-3 mx-auto">
-      <input type="text">
+      <input class="form-control" placeholder="Search">
 
-      <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
-        <button class="btn btn-outline-secondary" ngbDropdownToggle>Job type</button>
-        <div class="dropdown-menu" ngbDropdownMenu>
-          <button class="dropdown-item">One</button>
-          <button class="dropdown-item">Two</button>
-          <button class="dropdown-item">Four!</button>
-        </div>
+      <div class="form-group jobTypesSelect">
+        <select [(ngModel)]="jobSelected" name="job" id="job" class="form-control">
+          <option *ngFor="let jobType of jobTypes" value="{{jobType}}">{{jobType}}</option>
+        </select>
       </div>
 
 
       <form class="form-inline">
         <div class="form-group">
           <div class="input-group">
-            <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+            <input class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #d="ngbDatepicker">
             <div class="input-group-append">
               <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">

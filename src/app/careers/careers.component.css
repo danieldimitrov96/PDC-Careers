@@ -1,11 +1,22 @@
-svg{
-    padding-top:5px;
+.container {
+  padding-top: 3%;
 }
 
-.btn-group{
-    padding-top: 8px;
+svg {
+  padding-top: 5px;
 }
 
-.form-inline{
-    padding-top: 8px;
+.form-inline {
+  padding-top: 8px;
+}
+
+.jobTypesSelect {
+  padding-top: 8px;
+}
+.input-group-append{
+  background-color: #bababa;
+}
+
+.form-control{
+  background-color: #bababa;
 }
