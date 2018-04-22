@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -9,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
 import { AuthModule } from './auth/auth.module';
 import { CareersComponent } from './careers/careers.component';
+import { AppConfig } from './config/app.config';
 import { ContactsComponent } from './contacts/contacts.component';
 import { CoreModule } from './core/core.module';
 import { HomeComponent } from './home/home.component';
@@ -24,13 +26,14 @@ import { SharedModule } from './shared/shared.module';
   imports: [
     CoreModule,
     BrowserModule,
-    NgbModule,
+    NgbModule.forRoot(),
     SharedModule,
     RouterModule,
     AppRoutingModule,
     AuthModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [AppConfig],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
