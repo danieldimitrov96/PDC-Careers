@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HomeButtonsService } from '../../core/home-buttons.service';
+import { IButton } from '../../models/buttons/IButton';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  public socialButtons: IButton[] = [];
+  constructor(private homeButtonsService: HomeButtonsService) { }
 
-  ngOnInit() {
+  public  ngOnInit(): void {
+    this.homeButtonsService.getAll().subscribe((data) => {
+      data.forEach((button) => {
+        if (button.type !== 'Action') {
+          this.socialButtons.push(button);
+        }
+      });
+    });
   }
 
 }
