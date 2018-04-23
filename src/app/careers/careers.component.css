@@ -14,9 +14,5 @@ svg {
   padding-top: 8px;
 }
 .input-group-append{
-  background-color: #bababa;
-}
-
-.form-control{
-  background-color: #bababa;
+  background-color: white;
 }
