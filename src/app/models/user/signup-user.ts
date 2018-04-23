@@ -1,5 +1,5 @@
-export class SignUpUser {
-    public email: string;
-    public password: string;
+import { LoginUser } from './login-user';
+
+export class SignUpUser extends LoginUser {
     public confirmPaswword: string;
 }
