@@ -1,6 +1,6 @@
 import { Component, OnInit, Pipe } from '@angular/core';
+import { ContactsService } from '../core/contacts.service';
 import { IContacts } from '../models/contacts/IContacts';
-import { ContactsService } from './contacts.service';
 
 @Component({
   selector: 'app-contacts',

@@ -1,4 +1,6 @@
+import { IContact } from './IContact';
+
 export interface IContacts {
-     all: object[];
-     firstPrimary: {name: string; address: string};
+all: IContact[];
+firstPrimary: IContact;
 }
