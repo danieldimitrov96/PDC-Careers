@@ -1,5 +1,10 @@
-img {
-    /* height: 100vh; */
-    position: relative;
-    top: 0;
+.container {
+  padding-top: 3%;
+}
+
+.intro-text{
+  padding-top: 100px !important;
+}
+.backgroundHome {
+  background-image: url('./../../assets/back-ground.jpeg');
 }
