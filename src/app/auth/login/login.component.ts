@@ -1,8 +1,9 @@
-import { HttpResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { Component, Input, OnInit } from '@angular/core';
+import { EmailValidator, FormsModule, NgForm } from '@angular/forms';
+import { AppConfig } from '../../config/app.config';
 import { AuthService } from '../../core/auth.service';
-import { LoginUser } from '../../models/user/login-user';
+import { User } from '../../models/user/user';
 
 @Component({
   selector: 'app-login',
@@ -10,18 +11,39 @@ import { LoginUser } from '../../models/user/login-user';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  public loginForm: LoginUser;
+  public loginForm: User;
+  @Input() public loginError: string;
+  public error: boolean;
+  // public isEmail: EmailValidator;
+  constructor(private authService: AuthService, private appConfig: AppConfig) {}
 
-  constructor(private authService: AuthService) {}
-
-  public onLogin(form: NgForm): void {
+  public login(form: NgForm, route: string): void {
     this.loginForm = form.value;
-    this.authService.login(this.loginForm).subscribe((x: HttpResponse<{token: string}>) => {
-      console.log(x);
-      // localStorage.setItem('access_token', x.token);
+    this.error = this.setError(this.loginForm);
+    console.log(this.error);
+    this.authService.loginOrSignup(this.loginForm, route).subscribe((res) => {
+      /* tslint:disbale */
+        if (res.message) {
+          this.loginError = 'Invalid user or password';
+        } else {
+          console.log('Success');
+          console.log(res);
+          // this.loginError = false;
+        }
     });
-    console.log(this.loginForm.email);
-    console.log(this.loginForm.password);
   }
 
+  private setError(formInputs: User): boolean {
+    const isEmail = formInputs.email.match(this.appConfig.mailValidator);
+    const password = formInputs.password;
+    const confirmPassword = formInputs.confirmPaswword;
+    if (!isEmail) {
+      this.loginError = 'Invalid email';
+      return true;
+    } else if (password !== confirmPassword) {
+      this.loginError = 'Passwords do not match';
+      return true;
+    }
+    return false;
+  }
 }
