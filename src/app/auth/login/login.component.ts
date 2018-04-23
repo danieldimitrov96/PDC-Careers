@@ -12,15 +12,16 @@ import { LoginUser } from '../../models/user/login-user';
 export class LoginComponent {
   public loginForm: LoginUser;
 
-  constructor(private auth: AuthService) {}
+  constructor(private authService: AuthService) {}
 
   public onLogin(form: NgForm): void {
     this.loginForm = form.value;
-    this.auth.login(this.loginForm).subscribe((x: HttpResponse<{token: string}>) => {
+    this.authService.login(this.loginForm).subscribe((x: HttpResponse<{token: string}>) => {
       console.log(x);
       // localStorage.setItem('access_token', x.token);
     });
     console.log(this.loginForm.email);
     console.log(this.loginForm.password);
   }
+
 }
