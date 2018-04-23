@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'careers', children: [
       { path: '', component: CareersComponent, pathMatch: 'full' },
     ]},
-  { path: 'contact', children: [
+  { path: 'contacts', children: [
       { path: '', component: ContactsComponent, pathMatch: 'full' },
     ]},
   { path: 'login', children: [

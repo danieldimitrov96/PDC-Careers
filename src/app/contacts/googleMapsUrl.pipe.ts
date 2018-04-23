@@ -7,4 +7,4 @@ export class SafePipe {
   private transform(url: string): object {
 return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
-} 
+}
