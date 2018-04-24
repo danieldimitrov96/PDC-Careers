@@ -1,7 +1,10 @@
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+
 import { AuthService } from '../../core/auth.service';
+import { DataService } from '../../core/data.service';
 import { User } from '../../models/user/user';
 
 @Component({
@@ -9,38 +12,30 @@ import { User } from '../../models/user/user';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
-  public loginForm: User;
-  public loginError: string;
-  public error: boolean;
+export class LoginComponent implements OnInit {
 
-  constructor(private authService: AuthService) {}
+  public loginForm: User;
+  public userEmail: string;
+  private unautorizedStatus: number = 401;
+
+  constructor(private authService: AuthService, private toastr: ToastrService, private data: DataService) { }
+
+  public ngOnInit(): void {
+    this.data.currentData.subscribe((email) => this.userEmail = email);
+  }
 
   public login(form: NgForm, route: string): void {
     this.loginForm = form.value;
-    // this.error = this.setError(this.loginForm);
-    this.authService.loginOrSignup(this.loginForm, route).subscribe((res) => {
-        if (res.message) {
-          this.loginError = 'Invalid user or password';
-        } else {
-          console.log('Success');
-          console.log(res);
-          // this.loginError = false;
+    this.userEmail = this.loginForm.email;
+    this.authService.loginOrSignup(this.loginForm, route).subscribe(
+      (res) => {
+        this.toastr.success(`Welcome, ${this.loginForm.email}`);
+        this.data.changeData(this.userEmail);
+      },
+      (err: HttpErrorResponse) => {
+        if (err.status === this.unautorizedStatus) {
+          this.toastr.error('Invalid email or password!');
         }
-    });
+      });
   }
-
-  // private setError(formInputs: User): boolean {
-  //   const isEmail = formInputs.email.match(this.appConfig.mailValidator);
-  //   const password = formInputs.password;
-  //   const confirmPassword = formInputs.confirmPaswword;
-  //   if (!isEmail) {
-  //     this.loginError = 'Invalid email';
-  //     return true;
-  //   } else if (password !== confirmPassword) {
-  //     this.loginError = 'Passwords do not match';
-  //     return true;
-  //   }
-  //   return false;
-  // }
 }

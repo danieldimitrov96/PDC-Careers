@@ -1,7 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+
 import { AuthService } from '../../core/auth.service';
+import { DataService } from '../../core/data.service';
 import { User } from '../../models/user/user';
 
 @Component({
@@ -11,22 +14,27 @@ import { User } from '../../models/user/user';
 })
 
 export class SignupComponent {
-  public form: User;
+  public signUpForm: User;
+  public userEmail: string;
+  private foundStatus: number = 302;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private toastr: ToastrService, private data: DataService) { }
+
+  public ngOnInit(): void {
+    this.data.currentData.subscribe((email) => this.userEmail = email);
+  }
 
   public onSignUp(form: NgForm, route: string): void {
-    this.form = form.value;
-    this.authService.loginOrSignup(this.form, route).subscribe(
+    this.signUpForm = form.value;
+    this.userEmail = this.signUpForm.email;
+    this.authService.loginOrSignup(this.signUpForm, route).subscribe(
       (res) => {
-        /* tslint:disbale */
-
-        console.log('Success');
-        console.log(res);
-
-      }, (err: HttpErrorResponse) => {
-        if(err.status === 302){
-          console.log('User')
+        this.toastr.success(`${this.signUpForm.email} registered successfully!`);
+        this.data.changeData(this.userEmail);
+      },
+      (err: HttpErrorResponse) => {
+        if (err.status === this.foundStatus) {
+          this.toastr.error('User already exists!');
         }
       });
   }
@@ -34,7 +42,7 @@ export class SignupComponent {
   public passwordsMatch(form: NgForm): boolean {
     if (form.value.password !== form.value.confirmPass) {
       /* tslint:disable */
-      form.controls['confirmPass'].setErrors({incorrect: true});
+      form.controls['confirmPass'].setErrors({ incorrect: true });
       return true;
     }
     return false;
