@@ -1,0 +1,11 @@
+.container{
+    padding-top: 3%;
+}
+
+th{
+    color:white;
+}
+
+tr:hover { 
+    background-color: #636363;
+}

@@ -7,6 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { Observable } from 'rxjs/Rx';
 
+import { AdminModule } from './admin/admin.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
 import { AuthModule } from './auth/auth.module';
@@ -27,6 +28,7 @@ import { SharedModule } from './shared/shared.module';
     SafePipe,
   ],
   imports: [
+    AdminModule,
     CoreModule,
     BrowserModule,
     NgbModule.forRoot(),
