@@ -1,27 +1,41 @@
-import { HttpResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+
 import { AuthService } from '../../core/auth.service';
-import { LoginUser } from '../../models/user/login-user';
+import { DataService } from '../../core/data.service';
+import { User } from '../../models/user/user';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
-  public loginForm: LoginUser;
+export class LoginComponent implements OnInit {
 
-  constructor(private authService: AuthService) {}
+  public loginForm: User;
+  public userEmail: string;
+  private unautorizedStatus: number = 401;
 
-  public onLogin(form: NgForm): void {
-    this.loginForm = form.value;
-    this.authService.login(this.loginForm).subscribe((x: HttpResponse<{token: string}>) => {
-      console.log(x);
-      // localStorage.setItem('access_token', x.token);
-    });
-    console.log(this.loginForm.email);
-    console.log(this.loginForm.password);
+  constructor(private authService: AuthService, private toastr: ToastrService, private data: DataService) { }
+
+  public ngOnInit(): void {
+    this.data.currentData.subscribe((email) => this.userEmail = email);
   }
 
+  public login(form: NgForm, route: string): void {
+    this.loginForm = form.value;
+    this.userEmail = this.loginForm.email;
+    this.authService.loginOrSignup(this.loginForm, route).subscribe(
+      (res) => {
+        this.toastr.success(`Welcome, ${this.loginForm.email}`);
+        this.data.changeData(this.userEmail);
+      },
+      (err: HttpErrorResponse) => {
+        if (err.status === this.unautorizedStatus) {
+          this.toastr.error('Invalid email or password!');
+        }
+      });
+  }
 }

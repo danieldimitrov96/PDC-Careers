@@ -1,5 +1,5 @@
 <div class="container">
-    <form class="form-horizontal" (ngSubmit)="onLogin(f)" #f="ngForm">
+    <form class="form-horizontal" (ngSubmit)="login(f, '/login')" #f="ngForm">
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
@@ -14,18 +14,12 @@
                     <label class="sr-only" for="email">E-Mail Address</label>
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
-                        <input type="email" class="form-control" id="email" name="email" ngModel
-                               placeholder="email@pdc.com" required autofocus>
+                        <input type="email" class="form-control" id="email" name="email" #loginEmail="ngModel"
+                        ngModel email pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+                        placeholder="email@pdc.com" required>
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-md-3">
-                <div class="form-control-feedback">
-                    <span class="text-danger align-middle">
-                        <i class="fa fa-close"></i> Example error message
-                    </span>
-                </div>
-            </div> -->
         </div>
         <div class="row">
             <div class="col-md-3"></div>
@@ -38,10 +32,10 @@
                                placeholder="Password" required>
                     </div>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12" *ngIf = "!loginEmail.pattern && loginEmail.errors && loginEmail.touched && loginEmail.dirty">
                     <div class="form-control-feedback">
                         <span class="text-danger align-middle">
-                        Invalid email or password
+                        Invalid email address
                         </span>
                     </div>
                 </div>
@@ -62,8 +56,8 @@
         <div class="row" style="padding-top: 1rem">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <button type="submit" class="btn btn-success"><i class="fa fa-sign-in"></i> Login</button>
-                <!-- <a class="btn btn-link" href="/password/reset">Forgot Your Password?</a> -->
+                <button type="submit" class="btn btn-success" [disabled]="f.invalid">
+                    <i class="fa fa-sign-in"></i> Login</button>
             </div>
         </div>
     </form>

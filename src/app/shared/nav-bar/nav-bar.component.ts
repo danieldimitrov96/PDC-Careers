@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { AsyncPipe, CommonModule } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
+
+import { AuthService } from '../../core/auth.service';
+import { DataService } from '../../core/data.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -6,12 +10,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav-bar.component.css'],
 })
 export class NavBarComponent implements OnInit {
+  public userEmail: string;
+  constructor(public authService: AuthService, private data: DataService) {}
 
-  constructor() {
-
+  public ngOnInit(): void {
+    this.data.currentData.subscribe((email) => this.userEmail = email);
   }
 
-  ngOnInit() {
+  public onLogout(): void {
+    this.authService.logout();
   }
 
 }
