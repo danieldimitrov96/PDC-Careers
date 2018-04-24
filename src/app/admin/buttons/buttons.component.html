@@ -1,46 +1,32 @@
 <div class="container">
   <h2>Buttons</h2>
-  
+  <div class="btn btn-secondary">Create</div>
   <div class="table-responsive">
     <table class="table">
       <thead>
         <tr>
-          <th>Firstname</th>
-          <th>Lastname</th>
-          <th>Email</th>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Link</th>
+          <th>Icon link</th>
+          <th>Created at</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Default</td>
-          <td>Defaultson</td>
-          <td>def@somemail.com</td>
+
+        <tr *ngFor="let b of buttons">
+          <td>{{b._id}}</td>
+          <td>{{b.name}}</td>
+          <td>{{b.icon}}</td>
+          <td>{{b.link}}</td>
+          <td>{{b.createdAt.slice(11,16)}} {{b.createdAt.slice(0,10)}}</td>
+          <td>
+            <div class="btn btn-secondary">Edit</div>
+            <div class="btn btn-secondary">Delete</div>
+          </td>
         </tr>
-        <tr class="success">
-          <td>Success</td>
-          <td>Doe</td>
-          <td>john@example.com</td>
-        </tr>
-        <tr class="danger">
-          <td>Danger</td>
-          <td>Moe</td>
-          <td>mary@example.com</td>
-        </tr>
-        <tr class="info">
-          <td>Info</td>
-          <td>Dooley</td>
-          <td>july@example.com</td>
-        </tr>
-        <tr class="warning">
-          <td>Warning</td>
-          <td>Refs</td>
-          <td>bo@example.com</td>
-        </tr>
-        <tr class="active">
-          <td>Active</td>
-          <td>Activeson</td>
-          <td>act@example.com</td>
-        </tr>
+
       </tbody>
     </table>
   </div>

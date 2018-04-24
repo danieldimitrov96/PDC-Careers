@@ -9,3 +9,7 @@ th{
 tr:hover { 
     background-color: #636363;
 }
+
+.btn{
+    margin: 5px;
+}

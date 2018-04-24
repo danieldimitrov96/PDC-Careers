@@ -3,5 +3,4 @@ export interface IButton {
     name: string;
     type: string;
     link: string;
-    icon: string;
 }
