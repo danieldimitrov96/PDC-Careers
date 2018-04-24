@@ -1,8 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../../core/auth.service';
 import { User } from '../../models/user/user';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-signup',
@@ -29,5 +29,14 @@ export class SignupComponent {
           console.log('User')
         }
       });
+  }
+
+  public passwordsMatch(form: NgForm): boolean {
+    if (form.value.password !== form.value.confirmPass) {
+      /* tslint:disable */
+      form.controls['confirmPass'].setErrors({incorrect: true});
+      return true;
+    }
+    return false;
   }
 }

@@ -9,7 +9,6 @@ import 'rxjs/add/operator/shareReplay';
 import { Observable } from 'rxjs/Observable';
 
 import { AppConfig } from '../config/app.config';
-import { HttpOptions } from '../models/core/http-options';
 import { User } from '../models/user/user';
 import { UserSignupModel } from '../models/user/userSignUpModel';
 
@@ -37,7 +36,7 @@ export class AuthService {
     localStorage.clear();
   }
 
-  private setSession(authResponse): void {
+  private setSession(authResponse: UserSignupModel): void {
     const expiresAt = moment().add(authResponse.expiresIn, 'second');
     if (!authResponse.message) {
       localStorage.setItem('token', authResponse.token);
@@ -46,7 +45,7 @@ export class AuthService {
     }
   }
 
-  private getExpiration() {
+  private getExpiration(): moment.MomentInput {
     const expirationTimer = localStorage.getItem('expiresAt');
     const expiresAt = JSON.parse(expirationTimer);
     return moment(expiresAt);

@@ -1,6 +1,8 @@
-export class UserSignupModel{
-    email: string;
-    password: string;
-    confirmPassword: string;
-    message: string;
+export class UserSignupModel {
+    public email: string;
+    public password: string;
+    public confirmPassword: string;
+    public message: string;
+    public expiresIn: number;
+    public token: string;
 }

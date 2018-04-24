@@ -16,7 +16,8 @@
             <div class="input-group-addon" style="width: 2.6rem">
               <i class="fa fa-at"></i>
             </div>
-            <input type="email" class="form-control" id="email" name="email" ngModel placeholder="email@pdc.com" required autofocus>
+            <input type="email" class="form-control" id="email" name="email" #signUpEmail="ngModel" ngModel email pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+              placeholder="email@pdc.com" required autofocus>
           </div>
         </div>
       </div>
@@ -30,7 +31,8 @@
             <div class="input-group-addon" style="width: 2.6rem">
               <i class="fa fa-key"></i>
             </div>
-            <input type="password" name="password" class="form-control" id="password" ngModel placeholder="Password" required>
+            <input type="password" name="password" class="form-control" id="password" ngModel placeholder="Password" required #firstPassword="ngModel"
+              pattern="(?=^.{8,256}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*\s).*$">
           </div>
         </div>
         <div class="form-group">
@@ -39,16 +41,31 @@
             <div class="input-group-addon" style="width: 2.6rem">
               <i class="fa fa-key"></i>
             </div>
-            <input type="password" name="password" class="form-control" id="confirm-password" ngModel placeholder="Confirm Password" required>
+            <input type="password" name="confirmPass" class="form-control" id="confirmPass" ngModel placeholder="Confirm Password"
+              required #confirm="ngModel">
           </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12" *ngIf="!signUpEmail.pattern && signUpEmail.errors && signUpEmail.dirty && signUpEmail.touched">
           <div class="form-control-feedback">
             <span class="text-danger align-middle">
-              Invalid email or password
+              Invalid email address
             </span>
           </div>
         </div>
+        <div class="col-md-12" *ngIf="!firstPassword.pattern && firstPassword.errors && firstPassword.dirty && firstPassword.touched">
+          <div class="form-control-feedback">
+            <span class="text-danger align-middle">
+              Password must be at least 8 characters long, has at least 1 uppercase letter, 1 digit, and 1 special symbol
+            </span>
+          </div>
+        </div>
+        <div class="col-md-12" *ngIf="passwordsMatch(f) && confirm.dirty">
+            <div class="form-control-feedback">
+              <span class="text-danger align-middle">
+                Passwords don't match
+              </span>
+            </div>
+          </div>
       </div>
     </div>
     <div class="row" style="padding-top: 1rem">
