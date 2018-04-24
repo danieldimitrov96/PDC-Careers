@@ -7,6 +7,7 @@
         <tr>
           <th>ID</th>
           <th>Name</th>
+          <th>Type</th>
           <th>Link</th>
           <th>Icon link</th>
           <th>Created at</th>
@@ -18,6 +19,7 @@
         <tr *ngFor="let b of buttons">
           <td>{{b._id}}</td>
           <td>{{b.name}}</td>
+          <td>{{b.type}}</td>
           <td>{{b.icon}}</td>
           <td>{{b.link}}</td>
           <td>{{b.createdAt.slice(11,16)}} {{b.createdAt.slice(0,10)}}</td>

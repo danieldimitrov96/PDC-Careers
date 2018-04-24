@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ButtonsComponent } from './admin/buttons/buttons.component';
+import { CreateEditButtonsComponent } from './admin/create-edit-buttons/create-edit-buttons.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { CareersComponent } from './careers/careers.component';
@@ -10,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 const routes: Routes = [
   // refactor
   { path: 'admin/buttons', component: ButtonsComponent, pathMatch: 'full' },
+  { path: 'admin/buttons/createORedit', component: CreateEditButtonsComponent, pathMatch: 'full' },
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'home', redirectTo: '', pathMatch: 'full' },
   { path: 'careers', children: [
