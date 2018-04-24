@@ -8,8 +8,8 @@
       <div class="col-md-4">
         <ul class="list-inline social-buttons">
           
-          <li class="list-inline-item">
-            <a *ngFor="let socialButton of socialButtons" href="https://www.{{socialButton.name.toLocaleLowerCase()}}.com">
+          <li *ngFor="let socialButton of socialButtons" class="list-inline-item">
+            <a *ngIf="!socialButton.hidden" href="https://www.{{socialButton.name.toLocaleLowerCase()}}.com">
               <i class="fa fa-{{socialButton.name.toLocaleLowerCase()}}"></i>
             </a>
           </li>
