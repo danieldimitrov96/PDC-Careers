@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { NgbdAccordionStatic } from '../shared/careers-accordion/careers-accordion.component';
 
 @Component({
   selector: 'app-careers',
@@ -6,15 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./careers.component.css'],
 })
 
-export class CareersComponent implements OnInit {
+export class CareersComponent {
   public jobTypes = ['All', 'IT', 'HR'];
   public jobSelected = 'All';
-
-  constructor() {
-   }
-
-  ngOnInit() {
-
-  }
 
 }

@@ -13,7 +13,7 @@ import { Observable } from 'rxjs/Rx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
 import { AuthModule } from './auth/auth.module';
-import { CareersComponent } from './careers/careers.component';
+import { CareersModule } from './careers/careers.module';
 import { AppConfig } from './config/app.config';
 import { ContactsComponent } from './contacts/contacts.component';
 import { SafePipe } from './contacts/googleMapsUrl.pipe';
@@ -31,7 +31,6 @@ export function tokenGetter() {
   declarations: [
     AppComponent,
     HomeComponent,
-    CareersComponent,
     ContactsComponent,
     SafePipe,
   ],
@@ -44,6 +43,7 @@ export function tokenGetter() {
     RouterModule,
     AppRoutingModule,
     AuthModule,
+    CareersModule,
     HttpClientModule,
     FormsModule,
     JwtModule.forRoot({
@@ -56,7 +56,7 @@ export function tokenGetter() {
     ToastrModule.forRoot(
       {
         timeOut: 2000,
-        positionClass: 'toast-top-right',
+        positionClass: 'toast-top-center',
         preventDuplicates: true,
       }),
   ],
