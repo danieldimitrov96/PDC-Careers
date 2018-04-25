@@ -1,18 +1,21 @@
-.container {
+.careersTitle {
+  color: #fed136;
   padding-top: 3%;
+  padding-left: 3%;
+}
+.allCareers {
+  padding-top: 5%;
 }
 
-svg {
-  padding-top: 5px;
+.categoryType:hover {
+  background-color: #fed136;
 }
 
-.form-inline {
-  padding-top: 8px;
+.selectCategory {
+  color: #fed136;
 }
 
-.jobTypesSelect {
-  padding-top: 8px;
-}
-.input-group-append{
-  background-color: white;
-}
+/* .card-header {
+  background-color: green;
+  color: #fed136;
+} */

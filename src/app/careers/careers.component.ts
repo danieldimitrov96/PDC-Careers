@@ -1,5 +1,6 @@
+import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { NgbdAccordionStatic } from '../shared/careers-accordion/careers-accordion.component';
+import { CareersService } from '../core/careers.service';
 
 @Component({
   selector: 'app-careers',
@@ -7,8 +8,21 @@ import { NgbdAccordionStatic } from '../shared/careers-accordion/careers-accordi
   styleUrls: ['./careers.component.css'],
 })
 
-export class CareersComponent {
-  public jobTypes = ['All', 'IT', 'HR'];
-  public jobSelected = 'All';
+export class CareersComponent implements OnInit {
+  public allJobs: object[];
+  public allCategories: object[];
+  public nodata;
 
+  constructor(private careersService: CareersService) { }
+  // TO DO: push jobs in array so you can use pagination!
+
+  public ngOnInit(): void {
+    this.careersService.getOpenPositionsAndCategories().subscribe(
+      (res) => {
+        this.allJobs = res.allJobsAscending;
+        this.allCategories = res.allCategories;
+        console.log(this.allJobs);
+        console.log(this.allCategories);
+      });
+  }
 }

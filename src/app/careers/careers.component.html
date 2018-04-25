@@ -1,1 +1,31 @@
-<ngbd-accordion-static></ngbd-accordion-static>
+<div class="container">
+  <div class="row col-xs-12 col-md-9 col-lg-6 ">
+    <h2 class="careersTitle">Open positions</h2>
+  </div>
+  <div class="row col-sm-12 col-lg-3">
+    <div class="col">
+      <div ngbDropdown class="d-inline-block">
+        <button class="selectCategory btn btn-outline-secondary" id="dropdownBasic1" ngbDropdownToggle>Select Division</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button class="dropdown-item categoryType" *ngFor="let cat of allCategories">{{cat.type}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-9 allCareers" *ngIf="allJobs?.length !== 0; else nodata">
+    <ngb-accordion [closeOthers]="true">
+      <div class="row col-lg-9" *ngFor="let job of allJobs">
+        <ngb-panel id="{{job.id}}" title="{{job.title}}" class="jobTitle">
+          <ng-template ngbPanelContent>
+            {{job.description}}
+            <span>{{job.createdAt | date}}</span>
+          </ng-template>
+        </ngb-panel>
+      </div>
+    </ngb-accordion>
+  </div>
+
+  <ng-template #nodata>
+    <h3>There are no open positions - please try later</h3>
+  </ng-template>
+</div>
