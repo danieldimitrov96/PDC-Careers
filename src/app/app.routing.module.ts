@@ -11,7 +11,7 @@ import { HomeComponent } from './home/home.component';
 const routes: Routes = [
   // refactor
   { path: 'admin/buttons', component: ButtonsComponent, pathMatch: 'full' },
-  { path: 'admin/buttons/createORedit', component: CreateEditButtonsComponent, pathMatch: 'full' },
+  { path: 'admin/buttons/createOrEdit', component: CreateEditButtonsComponent, pathMatch: 'full' },
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'home', redirectTo: '', pathMatch: 'full' },
   { path: 'careers', children: [
