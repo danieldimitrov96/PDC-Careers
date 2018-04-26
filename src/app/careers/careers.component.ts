@@ -1,6 +1,13 @@
 import { DatePipe } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import {
+    MatAccordion, MatCard, MatDatepicker, MatDatepickerInputEvent, MatExpansionPanel, MatFormField,
+    MatFormFieldControl, MatOption, MatPaginator, MatSelect, MatTableDataSource,
+} from '@angular/material';
+import { Event } from '@angular/router';
 import { CareersService } from '../core/careers.service';
+import { CategoryModel } from '../models/careers/CategoryModel';
+import { JobModel } from '../models/careers/JobModel';
 
 @Component({
   selector: 'app-careers',
@@ -9,20 +16,28 @@ import { CareersService } from '../core/careers.service';
 })
 
 export class CareersComponent implements OnInit {
-  public allJobs: object[];
-  public allCategories: object[];
+  public allJobs: JobModel[];
+  public allJobsFiltered: JobModel[];
+  public allCategories: CategoryModel[];
   public nodata;
 
   constructor(private careersService: CareersService) { }
-  // TO DO: push jobs in array so you can use pagination!
-
   public ngOnInit(): void {
     this.careersService.getOpenPositionsAndCategories().subscribe(
       (res) => {
         this.allJobs = res.allJobsAscending;
+        this.allJobsFiltered = res.allJobsAscending;
         this.allCategories = res.allCategories;
         console.log(this.allJobs);
-        console.log(this.allCategories);
+        console.log(this.allJobsFiltered);
       });
+  }
+
+  public dateChanged(date: MatDatepickerInputEvent<Date>): void {
+    const dateSelected = new Date(date.value).setHours(0, 0, 0, 0);
+    this.allJobs.map((x) => {
+      return x.createdAt = new Date(x.createdAt).setHours(0, 0, 0, 0);
+    });
+    this.allJobsFiltered = this.allJobs.filter((x) => x.createdAt >= dateSelected);
   }
 }

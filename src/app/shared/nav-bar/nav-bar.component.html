@@ -29,8 +29,8 @@
           </li>
         </ng-template>
         <li class="nav-item" *ngIf = "authService.isLoggedIn()">
-          <span class="nav-item">Hello, {{userEmail}}</span>
-          <a class="nav-link" style="cursor: pointer;" (click) = "onLogout()">Logout</a>
+          <a style="cursor:default" class="nav-item">Hello, {{userEmail}}</a>
+          <a class="nav-link" class="logout" style="cursor: pointer;" (click) = "onLogout()">Logout</a>
         </li>
       </ul>
     </div>

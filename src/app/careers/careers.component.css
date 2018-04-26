@@ -7,6 +7,10 @@
   padding-top: 5%;
 }
 
+.jobTitle {
+  color: #fed136;
+}
+
 .categoryType:hover {
   background-color: #fed136;
 }
@@ -15,7 +19,7 @@
   color: #fed136;
 }
 
-/* .card-header {
-  background-color: green;
-  color: #fed136;
-} */
+.filtering {
+  padding-top: 4%;
+  padding-left: 2%;
+}
