@@ -1,21 +1,21 @@
 <div class="container">
   <h2>Create/Edit Button</h2>
-
   <div class="container">
     <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="col-md-6 mx-auto">
 
       <div class="form-group">
         <label for="name">Name</label>
-        <input  class="form-control" id="name"
-        ngModel
+        <input  class="form-control" id="name" 
+        [(ngModel)]="editObj.name"
         name="name"
         required>
       </div>
+      <h1>{{editObj.name}}</h1>
 
       <div class="form-group">
         <label for="link">Link target</label>
         <input type="text" class="form-control" id="link"
-        ngModel
+        [(ngModel)]="editObj.link"
         name="link"
         required>
       </div>
@@ -23,14 +23,14 @@
       <div class="form-group">
         <label for="icon">Icon path</label>
         <input type="text" class="form-control" id="icon"
-        ngModel
+        [(ngModel)]="editObj.icon"
         name="icon"
         required>
       </div>
 
       <label for="type">Type</label>
       <select class="form-control" id="type" 
-        ngModel
+      [(ngModel)]="editObj.type"
         name="type"
         required>
         <option>Action</option>
@@ -40,12 +40,13 @@
       <div class="padding">
         <label for="hidden">Hidden</label>
         <input type="checkbox"
-        ngModel
+        [(ngModel)]="editObj.hidden"
         name="hidden">
       </div>
 
       <button [disabled]="!f.valid" type="submit" class="btn btn-success float-right">Submit</button>
-
+      <button [routerLink]="['..']" class="btn btn-secondary float-left">Back</button>
+      
     </form>
   </div>
 

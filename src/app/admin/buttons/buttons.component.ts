@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import { Router } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { ButtonsService } from '../admin-core/buttons.service';
+import { DataService } from '../admin-core/data.service';
 import { IButtonAdmin } from '../models/IButtonAdmin/IButtonAdmin';
 
 @Component({
@@ -13,25 +14,35 @@ export class ButtonsComponent {
 
   public buttons: IButtonAdmin[] = [];
   public displayedColumns = ['_id', 'hidden', 'name', 'type', 'icon', 'link', 'createdAt', 'actions'];
-  public dataSource: MatTableDataSource<IButtonAdmin>;
+  public dataSource: MatTableDataSource < IButtonAdmin > ;
+
   @ViewChild(MatPaginator) public paginator: MatPaginator;
   @ViewChild(MatSort) public sort: MatSort;
-  constructor(private buttonsService: ButtonsService, private router: Router) {}
-  public  ngOnInit(): void {
-    this.buttonsService.getAll().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
-      this.buttons = data;
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    } );
+
+  private editObj: IButtonAdmin;
+
+  constructor(private buttonsService: ButtonsService,
+              private router: Router,
+              private data: DataService,
+              private routerSnapshot: ActivatedRoute) {
+  }
+
+  public ngOnInit(): void {
+    this.buttons = this.routerSnapshot.snapshot.data['buttons'];
+    this.dataSource = new MatTableDataSource(this.buttons);
+    this.data.currentEditObject.subscribe((obj) => this.editObj = obj);
   }
 
   public onCreate(): void {
     this.router.navigate(['admin', 'buttons', 'createOrEdit']);
   }
 
-  public onEdit(row): void {
-    console.log(row);
-    // this.router.navigate(['admin', 'buttons', 'createOrEdit']);
+  public onEdit(row: IButtonAdmin): void {
+    this.data.changeDataEditObject(row);
+    this.router.navigate(['admin', 'buttons', 'createOrEdit']);
+  }
+  private ngAfterViewInit(): void {
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
   }
 }

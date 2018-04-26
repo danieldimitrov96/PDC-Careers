@@ -1,32 +1,38 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppConfig } from '../../config/app.config';
 import { ButtonsService } from '../admin-core/buttons.service';
+import { DataService } from '../admin-core/data.service';
+import { ButtonAdmin } from '../models/ButtonAdmin/ButtonAdmin';
+import { IButtonAdmin } from '../models/IButtonAdmin/IButtonAdmin';
 
 @Component({
   selector: 'app-create-edit-buttons',
   templateUrl: './create-edit-buttons.component.html',
   styleUrls: ['./create-edit-buttons.component.css'],
 })
-export class CreateEditButtonsComponent implements OnInit {
-@ViewChild('f') public myForm: NgForm;
+export class CreateEditButtonsComponent implements OnInit,OnDestroy {
 
-constructor( private httpClient: HttpClient,
-             private appConfig: AppConfig,
-             private buttonsService: ButtonsService,
-             private router: Router) { }
+  public editObj: IButtonAdmin;
+  private templateRowObject = new ButtonAdmin();
 
-ngOnInit() {
-  this.buttonsService.mySubject.subscribe((data) => {
-    console.log(data);
-  });
-  
-  
+  constructor( private httpClient: HttpClient,
+               private appConfig: AppConfig,
+               private buttonsService: ButtonsService,
+               private router: Router,
+               private data: DataService) { }
 
-public onSubmit(form: NgForm): void{
-
+  public ngOnInit(): void {
+    this.data.currentEditObject.subscribe((obj) =>  this.editObj = obj);
+    console.log(this.editObj);
+  }
+  public ngOnDestroy(): void {
+    this.data.changeDataEditObject(this.templateRowObject);
+    console.log(this.editObj);
+  }
+  public onSubmit(form: NgForm): void {
     // TODO HANDLE ERROR TOASTR
     if (!form.value.hidden) {
       form.value.hidden = false;
@@ -38,9 +44,7 @@ public onSubmit(form: NgForm): void{
   (err) => {
   console.log('Handle error');
 });
-
     console.log(form.value);
-
   }
 
 }

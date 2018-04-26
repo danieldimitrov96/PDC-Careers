@@ -8,9 +8,11 @@ import { CareersComponent } from './careers/careers.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { HomeComponent } from './home/home.component';
 
+import { ButtonsResolver } from './admin/admin-core/resolvers/buttons.resolver';
+
 const routes: Routes = [
   // refactor
-  { path: 'admin/buttons', component: ButtonsComponent, pathMatch: 'full' },
+  { path: 'admin/buttons', component: ButtonsComponent, pathMatch: 'full' , resolve: {buttons: ButtonsResolver}},
   { path: 'admin/buttons/createOrEdit', component: CreateEditButtonsComponent, pathMatch: 'full' },
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'home', redirectTo: '', pathMatch: 'full' },
