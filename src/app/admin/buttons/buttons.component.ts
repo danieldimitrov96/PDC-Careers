@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { Router } from '@angular/router';
 import { ButtonsService } from '../admin-core/buttons.service';
 import { IButtonAdmin } from '../models/IButtonAdmin/IButtonAdmin';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-buttons',
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class ButtonsComponent {
 
   public buttons: IButtonAdmin[] = [];
-  public displayedColumns = ['_id', 'hidden', 'name', 'type', 'icon', 'link', 'createdAt','actions'];
+  public displayedColumns = ['_id', 'hidden', 'name', 'type', 'icon', 'link', 'createdAt', 'actions'];
   public dataSource: MatTableDataSource<IButtonAdmin>;
   @ViewChild(MatPaginator) public paginator: MatPaginator;
   @ViewChild(MatSort) public sort: MatSort;

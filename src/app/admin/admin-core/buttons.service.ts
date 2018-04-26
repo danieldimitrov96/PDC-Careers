@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
 
 import { AppConfig } from '../../config/app.config';
@@ -12,6 +13,10 @@ export class ButtonsService {
 
   public getAll(): Observable<IButtonAdmin[]> {
     return this.httpClient.get<IButtonAdmin[]>(`${this.appConfig.apiUrl}/admin/buttons`);
+  }
+
+  public createButton(data: IButtonAdmin): Observable<IButtonAdmin> {
+    return this.httpClient.post<IButtonAdmin>(`${this.appConfig.apiUrl}/admin/buttons`, data);
   }
 
 }
