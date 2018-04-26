@@ -1,7 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
 import { AppConfig } from '../../config/app.config';
 import { ButtonsService } from '../admin-core/buttons.service';
 import { DataService } from '../admin-core/data.service';
@@ -13,19 +15,21 @@ import { IButtonAdmin } from '../models/IButtonAdmin/IButtonAdmin';
   templateUrl: './create-edit-buttons.component.html',
   styleUrls: ['./create-edit-buttons.component.css'],
 })
-export class CreateEditButtonsComponent implements OnInit,OnDestroy {
+export class CreateEditButtonsComponent implements OnInit, OnDestroy {
 
   public editObj: IButtonAdmin;
+  private duplicatedStatus: number = 302;
   private templateRowObject = new ButtonAdmin();
 
-  constructor( private httpClient: HttpClient,
-               private appConfig: AppConfig,
-               private buttonsService: ButtonsService,
-               private router: Router,
-               private data: DataService) { }
+  constructor(private httpClient: HttpClient,
+    private appConfig: AppConfig,
+    private buttonsService: ButtonsService,
+    private router: Router,
+    private data: DataService,
+    private toastr: ToastrService) {}
 
   public ngOnInit(): void {
-    this.data.currentEditObject.subscribe((obj) =>  this.editObj = obj);
+    this.data.currentEditObject.subscribe((obj) => this.editObj = obj);
     console.log(this.editObj);
   }
   public ngOnDestroy(): void {
@@ -39,11 +43,16 @@ export class CreateEditButtonsComponent implements OnInit,OnDestroy {
     }
 
     this.buttonsService.createButton(form.value).subscribe(
-  (res) => { this.router.navigate(['admin', 'buttons']);
-},
-  (err) => {
-  console.log('Handle error');
-});
+      (res) => {
+        this.toastr.success('Added button', 'Success!');
+        this.router.navigate(['admin', 'buttons']);
+      },
+      (err: HttpErrorResponse) => {
+        console.log(form.value);
+        if (err.status === this.duplicatedStatus && form.value.name) {
+          this.toastr.error('Name is already used', 'Error');
+        }
+      });
     console.log(form.value);
   }
 

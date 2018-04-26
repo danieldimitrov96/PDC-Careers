@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { ToastrModule } from 'ngx-toastr';
 import { Observable } from 'rxjs/Rx';
 
 import { AdminModule } from './admin/admin.module';
@@ -38,6 +39,12 @@ import { SharedModule } from './shared/shared.module';
     AuthModule,
     HttpClientModule,
     FormsModule,
+    ToastrModule.forRoot(
+      {
+        timeOut: 2000,
+        positionClass: 'toast-top-right',
+        preventDuplicates: true,
+      }),
   ],
   providers: [AppConfig],
   bootstrap: [AppComponent],
