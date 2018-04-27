@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { ButtonAdmin } from '../models/ButtonAdmin/ButtonAdmin';
 import { IButtonAdmin } from '../models/IButtonAdmin/IButtonAdmin';

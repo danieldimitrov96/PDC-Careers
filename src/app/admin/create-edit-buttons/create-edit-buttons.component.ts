@@ -22,11 +22,11 @@ export class CreateEditButtonsComponent implements OnInit, OnDestroy {
   private templateRowObject = new ButtonAdmin();
 
   constructor(private httpClient: HttpClient,
-    private appConfig: AppConfig,
-    private buttonsService: ButtonsService,
-    private router: Router,
-    private data: DataService,
-    private toastr: ToastrService) {}
+              private appConfig: AppConfig,
+              private buttonsService: ButtonsService,
+              private router: Router,
+              private data: DataService,
+              private toastr: ToastrService) {}
 
   public ngOnInit(): void {
     this.data.currentEditObject.subscribe((obj) => this.editObj = obj);
@@ -48,7 +48,6 @@ export class CreateEditButtonsComponent implements OnInit, OnDestroy {
         this.router.navigate(['admin', 'buttons']);
       },
       (err: HttpErrorResponse) => {
-        console.log(form.value);
         if (err.status === this.duplicatedStatus && form.value.name) {
           this.toastr.error('Name is already used', 'Error');
         }
