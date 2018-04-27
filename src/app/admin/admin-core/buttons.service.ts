@@ -21,4 +21,8 @@ export class ButtonsService {
   public editButton(data: IButtonAdmin, id: string): Observable < IButtonAdmin > {
     return this.httpClient.post<IButtonAdmin>(`${this.appConfig.apiUrl}/admin/buttons/${id}`, data);
   }
+
+  public removeButton( id: string): Observable < IButtonAdmin > {
+    return this.httpClient.post<IButtonAdmin>(`${this.appConfig.apiUrl}/admin/buttons/remove/${id}`, id);
+  }
 }

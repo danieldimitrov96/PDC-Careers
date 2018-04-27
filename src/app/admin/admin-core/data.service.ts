@@ -17,6 +17,7 @@ export class DataService {
   public dataEditObject = new BehaviorSubject<IButtonAdmin>(this.template);
   public currentEditObject = this.dataEditObject.asObservable();
 
+  // tslint:disable-next-line:no-empty
   constructor() {}
 
   public changeDataEditObject(obj: IButtonAdmin): void {

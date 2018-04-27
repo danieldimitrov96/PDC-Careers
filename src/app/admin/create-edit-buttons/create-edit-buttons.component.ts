@@ -22,11 +22,11 @@ export class CreateEditButtonsComponent implements OnInit, OnDestroy {
   private templateRowObject = new ButtonAdmin();
 
   constructor(private httpClient: HttpClient,
-              private appConfig: AppConfig,
-              private buttonsService: ButtonsService,
-              private router: Router,
-              private data: DataService,
-              private toastr: ToastrService) {}
+    private appConfig: AppConfig,
+    private buttonsService: ButtonsService,
+    private router: Router,
+    private data: DataService,
+    private toastr: ToastrService) {}
 
   public ngOnInit(): void {
     this.data.currentEditObject.subscribe((obj) => this.editObj = obj);
@@ -44,6 +44,10 @@ export class CreateEditButtonsComponent implements OnInit, OnDestroy {
 
       this.buttonsService.editButton(form.value, form.value._id).subscribe(
         (res) => {
+          // fix toast on edit
+          // add confirm
+          // merge dev
+          console.log('zdr');
           this.toastr.success('Edited button', 'Success!');
           this.router.navigate(['admin', 'buttons']);
         },
