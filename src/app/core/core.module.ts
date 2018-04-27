@@ -4,7 +4,6 @@ import { AuthGuardService } from './auth-guard/auth-guard.service';
 import { AuthService } from './auth.service';
 import { CareersService } from './careers.service';
 import { ContactsService } from './contacts.service';
-import { DataService } from './data.service';
 import { HomeButtonsService } from './home-buttons.service';
 
 @NgModule({
@@ -17,7 +16,6 @@ import { HomeButtonsService } from './home-buttons.service';
     ContactsService,
     HomeButtonsService,
     AuthGuardService,
-    DataService,
     ],
 })
 export class CoreModule { }

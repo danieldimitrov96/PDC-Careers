@@ -2,50 +2,42 @@
   <div class="row col-xs-12 col-md-9 col-lg-6 ">
     <h2 class="careersTitle">Open positions</h2>
   </div>
-  <div class="row">
-    <div class="col-md-9 allCareers" *ngIf="allJobs?.length !== 0; else nodata">
+  <div class="row" *ngIf="allJobs?.length !== 0; else nodata">
+    <div class="col-md-9 allCareers">
       <div class="singleJob col-md-9" *ngFor="let job of allJobsFiltered">
-        <mat-card id="{{job.id}}">
-          <a [routerLink]="['/', job.id]">{{job.title}}</a>
+        <mat-card class="jobCard">
+          <a class="jobTitle" [routerLink]="['/careers', job.id]" id="{{job.id}}">{{job.title}}</a>
         </mat-card>
+        <hr>
       </div>
-      <!-- <mat-accordion>
-        <mat-expansion-panel *ngFor="let job of allJobs">
-          <mat-expansion-panel-header class="jobTitle">
-            {{job.title}}
-          </mat-expansion-panel-header>
-          {{job.description}}
-          <div class="row col-md-3 mx-auto">
-            <span>{{job.createdAt | date}}</span>
-          </div>
-        </mat-expansion-panel>
-      </mat-accordion> -->
     </div>
 
     <div class="col-md-3 mx-auto filtering">
-      <form class="example-form">
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Search" value="">
+        <h3 class='filterBy'>Filter by</h3>
+        <mat-form-field class="searchBox">
+          <input matInput placeholder="Search" name="searchText" (input)="search()" value="" [(ngModel)]="searchText">
         </mat-form-field>
-      </form>
+        <mat-form-field>
+          <mat-select placeholder="Select Division" (change)="filterByCategory()" [(ngModel)]="category" name="category">
+            <mat-option *ngFor="let cat of allCategories" [value]="cat.id">
+              {{cat.type}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       <mat-form-field>
-        <mat-select placeholder="Select Division">
-          <mat-option class="categoryType" *ngFor="let cat of allCategories" [value]="cat.type">
-            {{ cat.type }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput [matDatepicker]="picker" placeholder="Select date"
-        (dateInput)="dateChanged($event)" (dateChange)="dateChanged($event)">
+        <input matInput [matDatepicker]="picker" placeholder="Select date" (dateInput)="dateChanged($event)" (dateChange)="dateChanged($event)"
+          name="date" [(ngModel)]="date">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
+      <div class="row offset-8 resetFilters">
+        <button (click)="clearFilter()" mat-icon-button>Reset</button>
+      </div>
     </div>
   </div>
 
-
   <ng-template #nodata>
     <h3>There are no open positions - please try later</h3>
+    <!-- <img src="./../../assets/no_jobs.jpeg"> -->
   </ng-template>
 </div>

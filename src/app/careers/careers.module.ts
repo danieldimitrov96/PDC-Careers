@@ -2,8 +2,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
-    MatCardModule, MatDatepickerModule, MatExpansionModule, MatFormFieldModule, MatInputModule,
-    MatNativeDateModule, MatOptionModule, MatPaginatorModule, MatSelectModule, MatTableModule,
+    MatButtonModule, MatCardModule, MatDatepickerModule, MatDialogModule, MatExpansionModule,
+    MatFormFieldModule, MatInputModule, MatNativeDateModule, MatOptionModule, MatPaginatorModule,
+    MatSelectModule,
 } from '@angular/material';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -20,7 +21,6 @@ import { JobComponent } from './job/job.component';
     SharedModule,
     ReactiveFormsModule,
     NgbModule,
-    MatTableModule,
     MatFormFieldModule,
     MatOptionModule,
     MatSelectModule,
@@ -30,7 +30,8 @@ import { JobComponent } from './job/job.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatPaginatorModule,
-    MatTableModule,
+    MatDialogModule,
+    MatButtonModule,
   ],
   declarations: [
     CareersComponent,

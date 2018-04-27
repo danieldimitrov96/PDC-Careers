@@ -4,18 +4,32 @@
   padding-left: 3%;
 }
 .allCareers {
-  padding-top: 5%;
+  padding-top: 7%;
 }
 
+.jobCard {
+  height: 70px;
+  border-radius: 2px;
+}
 .jobTitle {
+  color: #fed136 !important;
+  cursor: pointer;
+  font-size: 1.4em;
+}
+
+.categoryType {
+  color: #fed136;
+}
+.categoryType:hover {
+  background-color: #fed136;
+  color: white;
+}
+
+.filterBy {
   color: #fed136;
 }
 
-.categoryType:hover {
-  background-color: #fed136;
-}
-
-.selectCategory {
+.resetFilters:hover {
   color: #fed136;
 }
 

@@ -12,8 +12,8 @@ import { Observable } from 'rxjs/Rx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
-import { AuthModule } from './auth/auth.module';
-import { CareersModule } from './careers/careers.module';
+// import { AuthModule } from './auth/auth.module';
+// import { CareersModule } from './careers/careers.module';
 import { AppConfig } from './config/app.config';
 import { ContactsComponent } from './contacts/contacts.component';
 import { SafePipe } from './contacts/googleMapsUrl.pipe';
@@ -42,8 +42,8 @@ export function tokenGetter() {
     SharedModule,
     RouterModule,
     AppRoutingModule,
-    AuthModule,
-    CareersModule,
+    // AuthModule,
+    // CareersModule,
     HttpClientModule,
     FormsModule,
     JwtModule.forRoot({

@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-job',
   templateUrl: './job.component.html',
   styleUrls: ['./job.component.css'],
 })
-export class JobComponent implements OnInit {
+export class JobComponent {
 
-  constructor() { }
+  // constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
 
-  ngOnInit() {
-  }
-
+  // public ngOnInit(): void {
+  //   // will log the entire data object
+  //   console.log(this.data);
+  // }
 }

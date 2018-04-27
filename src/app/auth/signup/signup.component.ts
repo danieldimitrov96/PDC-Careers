@@ -4,7 +4,6 @@ import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 import { AuthService } from '../../core/auth.service';
-import { DataService } from '../../core/data.service';
 import { User } from '../../models/user/user';
 
 @Component({
@@ -18,11 +17,7 @@ export class SignupComponent {
   public userEmail: string;
   private foundStatus: number = 302;
 
-  constructor(private authService: AuthService, private toastr: ToastrService, private data: DataService) { }
-
-  public ngOnInit(): void {
-    this.data.currentData.subscribe((email) => this.userEmail = email);
-  }
+  constructor(private authService: AuthService, private toastr: ToastrService) { }
 
   public onSignUp(form: NgForm, route: string): void {
     this.signUpForm = form.value;
@@ -30,7 +25,6 @@ export class SignupComponent {
     this.authService.loginOrSignup(this.signUpForm, route).subscribe(
       (res) => {
         this.toastr.success(`${this.signUpForm.email} registered successfully!`);
-        this.data.changeData(this.userEmail);
       },
       (err: HttpErrorResponse) => {
         if (err.status === this.foundStatus) {
