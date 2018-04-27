@@ -52,7 +52,7 @@ export class CareersComponent implements OnInit {
 
   public filterByCategory(): void {
     this.allJobsFiltered =
-    this.careersService.filterByCategory(this.allJobsFiltered, this.allJobs, this.category, this.searchText, this.dateSelected)
+    this.careersService.filterByCategory(this.allJobsFiltered, this.allJobs, this.category, this.searchText, this.dateSelected);
   }
 
   public clearFilter(): void {
