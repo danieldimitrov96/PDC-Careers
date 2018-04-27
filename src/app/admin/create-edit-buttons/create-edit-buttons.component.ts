@@ -30,29 +30,40 @@ export class CreateEditButtonsComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.data.currentEditObject.subscribe((obj) => this.editObj = obj);
-    console.log(this.editObj);
   }
   public ngOnDestroy(): void {
     this.data.changeDataEditObject(this.templateRowObject);
-    console.log(this.editObj);
   }
   public onSubmit(form: NgForm): void {
     // TODO HANDLE ERROR TOASTR
     if (!form.value.hidden) {
       form.value.hidden = false;
     }
+    if (this.editObj._id) {
+      form.value._id = this.editObj._id;
 
-    this.buttonsService.createButton(form.value).subscribe(
-      (res) => {
-        this.toastr.success('Added button', 'Success!');
-        this.router.navigate(['admin', 'buttons']);
-      },
-      (err: HttpErrorResponse) => {
-        if (err.status === this.duplicatedStatus && form.value.name) {
-          this.toastr.error('Name is already used', 'Error');
-        }
-      });
-    console.log(form.value);
+      this.buttonsService.editButton(form.value, form.value._id).subscribe(
+        (res) => {
+          this.toastr.success('Edited button', 'Success!');
+          this.router.navigate(['admin', 'buttons']);
+        },
+        (err: HttpErrorResponse) => {
+          if (err.status === this.duplicatedStatus && form.value.name) {
+            this.toastr.error('Check your internet Conn', 'Error');
+          }
+        });
+    } else {
+      this.buttonsService.createButton(form.value).subscribe(
+        (res) => {
+          this.toastr.success('Added button', 'Success!');
+          this.router.navigate(['admin', 'buttons']);
+        },
+        (err: HttpErrorResponse) => {
+          if (err.status === this.duplicatedStatus && form.value.name) {
+            this.toastr.error('Name is already used', 'Error');
+          }
+        });
+    }
   }
 
 }

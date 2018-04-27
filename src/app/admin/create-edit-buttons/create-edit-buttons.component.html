@@ -5,7 +5,7 @@
 
       <div class="form-group">
         <label for="name">Name</label>
-        <input  class="form-control" id="name" 
+        <input  class="form-control" id="name" pattern=".{3,120}"
         [(ngModel)]="editObj.name"
         name="name"
         required>
@@ -43,8 +43,7 @@
         name="hidden">
       </div>
 
-      <button *ngIf="!editObj.type" [disabled]="!f.valid" type="submit" class="btn btn-success float-right">Create Button</button>
-      <button *ngIf="editObj.type" [disabled]="!f.valid" type="submit" class="btn btn-success float-right">Edit button</button>
+      <button [disabled]="!f.valid" type="submit" class="btn btn-success float-right">Submit</button>
       <button [routerLink]="['..']" class="btn btn-secondary float-left">Back</button>
       
     </form>
