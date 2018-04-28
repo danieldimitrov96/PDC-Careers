@@ -1,5 +1,11 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material';
+import { DatePipe } from '@angular/common';
+import { Component, Inject, Input, OnInit } from '@angular/core';
+import {
+    MatCard, MatCardActions, MatCardContent, MatCardTitle, MatDialog,
+} from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
+import { CareersService } from '../../core/careers.service';
+import { JobModel } from '../../models/careers/JobModel';
 
 @Component({
   selector: 'app-job',
@@ -7,11 +13,21 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material';
   styleUrls: ['./job.component.css'],
 })
 export class JobComponent {
+  public job: JobModel;
+  public id: string;
+  constructor(private careersService: CareersService, private activatedRoute: ActivatedRoute) { }
 
-  // constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
-
-  // public ngOnInit(): void {
-  //   // will log the entire data object
-  //   console.log(this.data);
-  // }
+  public ngOnInit(): void {
+    this.activatedRoute.params
+      .subscribe((x) => {
+        this.id = x.id;
+      });
+    this.careersService
+      .getCurrentJob(this.id)
+      .subscribe((data) => {
+        this.job = data;
+        console.log(this.job);
+      });
+    // console.log(this.id);
+  }
 }

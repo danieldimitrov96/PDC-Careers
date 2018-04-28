@@ -11,6 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from '../shared/shared.module';
 import { CareersComponent } from './careers.component';
 import { CareersRoutingModule } from './careers.routing.module';
+import { JobApplyComponent } from './job-apply/job-apply.component';
 import { JobComponent } from './job/job.component';
 
 @NgModule({
@@ -36,10 +37,12 @@ import { JobComponent } from './job/job.component';
   declarations: [
     CareersComponent,
     JobComponent,
+    JobApplyComponent,
   ],
   exports: [
     CareersComponent,
     JobComponent,
+    JobApplyComponent,
   ],
 })
 export class CareersModule { }
