@@ -1,12 +1,12 @@
 import { Location } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RequestOptions } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
-import { AppConfig } from '../../config/app.config';
+import { AuthService } from '../../core/auth.service';
 import { CareersService } from '../../core/careers.service';
 import { JobModel } from '../../models/careers/JobModel';
 
@@ -21,15 +21,16 @@ export class JobApplyComponent implements OnInit {
   public job: JobModel;
   public form: FormGroup;
   public loading: boolean = false;
-  @ViewChild('cv') public cv: ElementRef;
-  @ViewChild('coverLetter') public coverLetter: ElementRef;
+  @ViewChild('CV') public CV: ElementRef;
+  @ViewChild('CoverLetter') public CoverLetter: ElementRef;
   private minLength = 3;
   private maxLength = 100;
   private commentMax = 1024;
 
   constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute,
               private careersService: CareersService,
-              private location: Location) {
+              private location: Location,
+              private authService: AuthService) {
     this.createForm();
   }
   public ngOnInit(): void {
@@ -41,7 +42,7 @@ export class JobApplyComponent implements OnInit {
       .getCurrentJob(this.id)
       .subscribe((data) => {
         this.job = data;
-        // console.log(this.job);
+        console.log(this.job);
       });
   }
   public createForm(): void {
@@ -49,24 +50,33 @@ export class JobApplyComponent implements OnInit {
       firstName: ['', [Validators.required, Validators.minLength(this.minLength)]],
       lastName: ['', [Validators.required, Validators.minLength(this.minLength), Validators.maxLength(this.maxLength)]],
       comment: ['', Validators.maxLength(this.commentMax)],
-      cv: ['', Validators.required],
-      coverLetter: ['', Validators.required],
+      CV: ['', Validators.required],
+      CoverLetter: ['', Validators.required],
     });
   }
 
   public onFileChange(event: any): void {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
-      this.form.get('cv').setValue(file);
-      this.form.get('coverLetter').setValue(file);
+      this.form.get('CV').setValue(file);
+      this.form.get('CoverLetter').setValue(file);
     }
   }
 
   public onSubmit(): void {
     const formModel = this.prepareSave();
     this.loading = true;
-    // In a real-world app you'd have a http request / service call here like
-    // this.http.post('apiUrl', formModel)
+    console.log(this.id);
+    console.log(this.form.value);
+
+    this.careersService.applyForJob(this.id, this.form.value).subscribe(
+      (res) => {
+        console.log('Success');
+      },
+      (err: HttpErrorResponse) => {
+        console.log('Fail');
+      });
+
     setTimeout(() => {
       // FormData cannot be inspected (see "Key difference"), hence no need to log it here
       alert('done!');
@@ -76,17 +86,17 @@ export class JobApplyComponent implements OnInit {
   }
 
   public onBack(): void {
-    this.form.get('cv').setValue(null);
-    this.form.get('coverLetter').setValue(null);
+    this.form.get('CV').setValue(null);
+    this.form.get('CoverLetter').setValue(null);
     this.form.get('firstName').setValue(null);
     this.form.get('lastName').setValue(null);
     this.form.get('comment').setValue(null);
-    this.cv.nativeElement.value = '';
-    this.coverLetter.nativeElement.value = '';
+    this.CV.nativeElement.value = '';
+    this.CoverLetter.nativeElement.value = '';
     this.location.back();
     // firstName.nativeElement.value = '';
-    // this.coverLetter.nativeElement.value = '';
-    // this.coverLetter.nativeElement.value = '';
+    // this.CoverLetter.nativeElement.value = '';
+    // this.CoverLetter.nativeElement.value = '';
   }
 
   private prepareSave(): FormData {
@@ -94,8 +104,8 @@ export class JobApplyComponent implements OnInit {
     input.append('firstName', this.form.get('firstName').value);
     input.append('lastName', this.form.get('lastName').value);
     input.append('comment', this.form.get('comment').value);
-    input.append('cv', this.form.get('cv').value);
-    input.append('coverLetter', this.form.get('coverLetter').value);
+    input.append('CV', this.form.get('CV').value);
+    input.append('CoverLetter', this.form.get('CoverLetter').value);
     return input;
   }
 }

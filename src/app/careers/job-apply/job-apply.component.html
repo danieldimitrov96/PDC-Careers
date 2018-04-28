@@ -16,12 +16,12 @@
           rows="5"></textarea>
       </div>
       <div class="form-group">
-        <label for="cv" class="btn btn-sm uploadButtons">Upload CV</label>
-        <input style="visibility:hidden;" type="file" id="cv" (change)="onFileChange($event)" #cv accept=".pdf,.doc,.docx">
+        <label for="CV" class="btn btn-sm uploadButtons">Upload CV</label>
+        <input style="visibility:hidden;" type="file" id="CV" (change)="onFileChange($event)" #CV accept=".pdf,.doc,.docx">
       </div>
       <div class="form-group">
-        <label for="coverLetter" class="btn btn-sm uploadButtons">Upload Cover Letter</label>
-        <input style="visibility:hidden;" type="file" id="coverLetter" (change)="onFileChange($event)" #coverLetter accept=".pdf,.doc,.docx">
+        <label for="CoverLetter" class="btn btn-sm uploadButtons">Upload Cover Letter</label>
+        <input style="visibility:hidden;" type="file" id="CoverLetter" (change)="onFileChange($event)" #CoverLetter accept=".pdf,.doc,.docx">
       </div>
       <button type="submit" [disabled]="form.invalid || loading" class="btn btn-success">Submit
         <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i>

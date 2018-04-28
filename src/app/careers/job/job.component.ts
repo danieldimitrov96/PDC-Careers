@@ -3,7 +3,8 @@ import { Component, Inject, Input, OnInit, Output } from '@angular/core';
 import {
     MatCard, MatCardActions, MatCardContent, MatCardTitle, MatDialog,
 } from '@angular/material';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../../core/auth.service';
 import { CareersService } from '../../core/careers.service';
 import { JobModel } from '../../models/careers/JobModel';
 
@@ -15,7 +16,11 @@ import { JobModel } from '../../models/careers/JobModel';
 export class JobComponent {
   public job: JobModel;
   public id: string;
-  constructor(private careersService: CareersService, private activatedRoute: ActivatedRoute) { }
+  public userEmail: string;
+  constructor(private careersService: CareersService,
+              private activatedRoute: ActivatedRoute,
+              private authService: AuthService,
+              private router: Router) { }
 
   public ngOnInit(): void {
     this.activatedRoute.params
@@ -28,7 +33,17 @@ export class JobComponent {
         this.job = data;
         // console.log(this.job);
       });
+    this.userEmail = this.authService.getUserInfoBy('email');
     // console.log(this.id);
+  }
+
+  public onApply(): void {
+    if (this.userEmail) {
+      this.router.navigate([`/careers/${this.id}/apply`]);
+      // [routerLink]="['/careers', id, 'apply' ]"
+    } else {
+      this.router.navigate(['/auth/login']);
+    }
   }
 
   // public onApply(): void {

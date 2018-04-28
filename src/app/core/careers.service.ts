@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { AppConfig } from '../config/app.config';
 import { CareersModel } from '../models/careers/CareersModel';
+import { JobApplyModel } from '../models/careers/JobApplyModel';
 import { JobModel } from '../models/careers/JobModel';
 import { AuthService } from './auth.service';
 
@@ -23,6 +24,10 @@ export class CareersService {
 
   public getCurrentJob(id: string): Observable<JobModel> {
     return this.httpClient.get<JobModel>(`${this.appConfig.apiUrl}/careers/${id}`);
+  }
+
+  public applyForJob(jobId: string, content: JobApplyModel): Observable<JobApplyModel> {
+    return this.httpClient.post<JobApplyModel>(`${this.appConfig.apiUrl}/careers/${jobId}`, content);
   }
 
   public searchJob(

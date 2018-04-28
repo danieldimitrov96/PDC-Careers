@@ -7,7 +7,7 @@
           <p>{{job?.description}}</p>
           <mat-card-footer> {{job?.createdAt | date}}</mat-card-footer>
           <mat-card-actions>
-            <a [routerLink]="['/careers', id, 'apply' ]">Apply</a>
+            <a style="cursor: pointer;" (click)="onApply()">Apply</a>
           </mat-card-actions>
         </mat-card-content>
       </mat-card>

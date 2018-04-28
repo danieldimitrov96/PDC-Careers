@@ -13,11 +13,11 @@ export class NavBarComponent implements OnInit {
   constructor(public authService: AuthService) {}
 
   public ngOnInit(): void {
-    this.userEmail = this.authService.getUserInfo();
+    this.userEmail = this.authService.getUserInfoBy('email');
   }
 
   public ngDoCheck(): void {
-    this.userEmail = this.authService.getUserInfo();
+    this.userEmail = this.authService.getUserInfoBy('email');
   }
 
   public onLogout(): void {
