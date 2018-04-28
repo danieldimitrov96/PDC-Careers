@@ -19,8 +19,8 @@ export class AuthService {
 
   public loginOrSignup(user: User, route: string): Observable<UserSignupModel> {
     return this.http.post<UserSignupModel>(`${this.appConfig.apiUrl}${route}`, user)
-    .do((res) => this.setSession(res))
-    .shareReplay();
+      .do((res) => this.setSession(res))
+      .shareReplay();
   }
 
   public isAuth(): boolean {
@@ -33,7 +33,17 @@ export class AuthService {
   }
 
   public logout(): void {
-    localStorage.clear();
+    localStorage.removeItem('token');
+    localStorage.removeItem('expiresAt');
+  }
+
+  public getUserInfo(): string {
+    const token = this.jwtService.tokenGetter();
+    if (token) {
+      const decoded = this.jwtService.decodeToken(token);
+      return decoded.email;
+    }
+    return null;
   }
 
   private setSession(authResponse: UserSignupModel): void {

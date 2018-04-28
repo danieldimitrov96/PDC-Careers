@@ -2,7 +2,6 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 
 import { AuthService } from '../../core/auth.service';
-import { DataService } from '../../core/data.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -11,14 +10,22 @@ import { DataService } from '../../core/data.service';
 })
 export class NavBarComponent implements OnInit {
   public userEmail: string;
-  constructor(public authService: AuthService, private data: DataService) {}
+  constructor(public authService: AuthService) {}
 
   public ngOnInit(): void {
-    this.data.currentData.subscribe((email) => this.userEmail = email);
+    this.userEmail = this.authService.getUserInfo();
+  }
+
+  public ngDoCheck(): void {
+    this.userEmail = this.authService.getUserInfo();
   }
 
   public onLogout(): void {
     this.authService.logout();
+    this.userEmail = null;
   }
 
+  public isAuth(): boolean {
+    return !!this.userEmail;
+  }
 }

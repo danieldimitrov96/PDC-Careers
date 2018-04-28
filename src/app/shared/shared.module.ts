@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -11,10 +12,12 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     CommonModule,
     RouterModule,
     NgbModule,
+    FormsModule,
   ],
   declarations: [
     NavBarComponent,
-    FooterComponent],
+    FooterComponent,
+  ],
   exports: [
     NavBarComponent,
     FooterComponent,

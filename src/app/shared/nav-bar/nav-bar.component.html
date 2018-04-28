@@ -20,7 +20,7 @@
         </li>
         </ul>
       <ul class="navbar-nav text-uppercase ml-auto">
-        <ng-template [ngIf] = "!authService.isLoggedIn()">
+        <ng-template [ngIf] = "!isAuth()">
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['/auth/login']" routerLinkActive="active">Login</a>
           </li>
@@ -28,9 +28,9 @@
             <a class="nav-link" [routerLink]="['/auth/signup']" routerLinkActive="active">Sign Up</a>
           </li>
         </ng-template>
-        <li class="nav-item" *ngIf = "authService.isLoggedIn()">
-          <span class="nav-item">Hello, {{userEmail}}</span>
-          <a class="nav-link" style="cursor: pointer;" (click) = "onLogout()">Logout</a>
+        <li class="nav-item" *ngIf = "isAuth()">
+          <a style="cursor:default" class="nav-item">Hello, {{userEmail}}</a>
+          <a class="nav-link" class="logout" style="cursor: pointer;" (click) = "onLogout()">Logout</a>
         </li>
       </ul>
     </div>

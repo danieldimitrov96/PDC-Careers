@@ -10,11 +10,7 @@ const routes: Routes = [
 
   { path: '', component: HomeComponent },
   { path: 'home', redirectTo: '', pathMatch: 'full'},
-  {
-    path: 'careers', children: [
-      { path: '', component: CareersComponent, pathMatch: 'full' },
-    ],
-  },
+  { path: 'careers', loadChildren: './careers/careers.module#CareersModule' },
   {
     path: 'contacts', children: [
       { path: '', component: ContactsComponent, pathMatch: 'full' },
