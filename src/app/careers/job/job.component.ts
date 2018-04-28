@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit, Output } from '@angular/core';
 import {
     MatCard, MatCardActions, MatCardContent, MatCardTitle, MatDialog,
 } from '@angular/material';
@@ -26,8 +26,12 @@ export class JobComponent {
       .getCurrentJob(this.id)
       .subscribe((data) => {
         this.job = data;
-        console.log(this.job);
+        // console.log(this.job);
       });
     // console.log(this.id);
   }
+
+  // public onApply(): void {
+  //   this.jobApplied.emit(this.job);
+  // }
 }
