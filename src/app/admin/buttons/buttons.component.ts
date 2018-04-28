@@ -26,11 +26,10 @@ export class ButtonsComponent {
   private editObj: IButtonAdmin;
 
   constructor(private buttonsService: ButtonsService,
-              private router: Router,
-              private data: DataService,
-              private routerSnapshot: ActivatedRoute,
-              private toastr: ToastrService) {
-  }
+    private router: Router,
+    private data: DataService,
+    private routerSnapshot: ActivatedRoute,
+    private toastr: ToastrService) {}
 
   public ngOnInit(): void {
     this.buttons = this.routerSnapshot.snapshot.data['buttons'];
@@ -46,6 +45,7 @@ export class ButtonsComponent {
     this.buttonsService.removeButton(id).subscribe(
       (res) => {
         this.toastr.success('Edited button', 'Success!');
+        this.dataSource.data = this.dataSource.data.filter((x) => x._id !== id);
       },
       (err: HttpErrorResponse) => {
         if (err.status === this.duplicatedStatus) {
@@ -58,7 +58,7 @@ export class ButtonsComponent {
     this.router.navigate(['admin', 'buttons', 'createOrEdit']);
   }
   private ngAfterViewInit(): void {
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 }

@@ -44,10 +44,6 @@ export class CreateEditButtonsComponent implements OnInit, OnDestroy {
 
       this.buttonsService.editButton(form.value, form.value._id).subscribe(
         (res) => {
-          // fix toast on edit
-          // add confirm
-          // merge dev
-          console.log('zdr');
           this.toastr.success('Edited button', 'Success!');
           this.router.navigate(['admin', 'buttons']);
         },
