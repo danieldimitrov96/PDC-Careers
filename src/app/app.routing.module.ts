@@ -15,6 +15,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { CareersComponent } from './careers/careers.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { HomeComponent } from './home/home.component';
+import { NotFoundComponent } from './shared/not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -30,7 +31,8 @@ const routes: Routes = [
   { path: 'admin/buttons/createOrEdit', component: CreateEditButtonsComponent, pathMatch: 'full' },
   { path: 'admin/contacts', component: ContactsAdminComponent, pathMatch: 'full',  resolve: { contacts: ContactsAdminResolver }  },
   { path: 'admin/contacts/createOrEdit', component: CreateEditContactsAdminComponent, pathMatch: 'full' },
-
+  { component: NotFoundComponent, path: '404' },
+  { path: '**', redirectTo: '404' },
 
 ];
 

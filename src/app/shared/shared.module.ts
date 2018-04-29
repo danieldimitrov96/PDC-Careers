@@ -6,6 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { FooterComponent } from './footer/footer.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
   declarations: [
     NavBarComponent,
     FooterComponent,
+    NotFoundComponent,
   ],
   exports: [
     NavBarComponent,
