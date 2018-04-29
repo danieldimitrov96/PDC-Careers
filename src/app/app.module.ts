@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { Observable } from 'rxjs/Rx';
 
+import { AdminModule } from './admin/admin.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
 // import { AuthModule } from './auth/auth.module';
@@ -35,6 +36,7 @@ export function tokenGetter() {
     SafePipe,
   ],
   imports: [
+    AdminModule,
     CoreModule,
     BrowserAnimationsModule,
     BrowserModule,

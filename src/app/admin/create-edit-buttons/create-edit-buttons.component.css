@@ -1,0 +1,20 @@
+.container{
+    padding-top: 3%;
+}
+
+span{
+    padding-bottom: 5px;
+}
+
+.btn{
+    margin: 10px;
+}
+
+.padding{
+    padding: 10px;
+    padding-top:30px;
+}
+
+input.ng-invalid.ng-touched ,select.ng-invalid.ng-touched{
+border: 1px solid red;
+}
