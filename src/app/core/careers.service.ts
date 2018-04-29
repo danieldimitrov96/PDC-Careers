@@ -26,7 +26,7 @@ export class CareersService {
     return this.httpClient.get<JobModel>(`${this.appConfig.apiUrl}/careers/${id}`);
   }
 
-  public applyForJob(jobId: string, content: JobApplyModel): Observable<JobApplyModel> {
+  public applyForJob(jobId: string, content: FormData): Observable<JobApplyModel> {
     return this.httpClient.post<JobApplyModel>(`${this.appConfig.apiUrl}/careers/${jobId}`, content);
   }
 

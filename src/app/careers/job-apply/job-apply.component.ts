@@ -22,7 +22,7 @@ export class JobApplyComponent implements OnInit {
   public form: FormGroup;
   public loading: boolean = false;
   @ViewChild('CV') public CV: ElementRef;
-  @ViewChild('CoverLetter') public CoverLetter: ElementRef;
+  @ViewChild('CoverLetter') public coverLetter: ElementRef;
   private minLength = 3;
   private maxLength = 100;
   private commentMax = 1024;
@@ -66,10 +66,11 @@ export class JobApplyComponent implements OnInit {
   public onSubmit(): void {
     const formModel = this.prepareSave();
     this.loading = true;
+    console.log(formModel);
     console.log(this.id);
     console.log(this.form.value);
 
-    this.careersService.applyForJob(this.id, this.form.value).subscribe(
+    this.careersService.applyForJob(this.id, formModel).subscribe(
       (res) => {
         console.log('Success');
       },
@@ -92,7 +93,7 @@ export class JobApplyComponent implements OnInit {
     this.form.get('lastName').setValue(null);
     this.form.get('comment').setValue(null);
     this.CV.nativeElement.value = '';
-    this.CoverLetter.nativeElement.value = '';
+    this.coverLetter.nativeElement.value = '';
     this.location.back();
     // firstName.nativeElement.value = '';
     // this.CoverLetter.nativeElement.value = '';
