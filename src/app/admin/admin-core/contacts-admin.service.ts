@@ -13,16 +13,16 @@ export class ContactsAdminService {
     return this.httpClient.get < IContactAdmin[] > (`${this.appConfig.apiUrl}/admin/contacts`);
   }
 
-  // public createButton(data: IContact): Observable < IContact > {
-  //   return this.httpClient.post < IContact > (`${this.appConfig.apiUrl}/admin/buttons`, data);
-  // }
+  public createContact(data: IContactAdmin): Observable < IContactAdmin > {
+    return this.httpClient.post < IContactAdmin > (`${this.appConfig.apiUrl}/admin/contacts`, data);
+  }
 
-  // public editButton(data: IContact, id: string): Observable < IContact > {
-  //   return this.httpClient.post<IContact>(`${this.appConfig.apiUrl}/admin/buttons/${id}`, data);
-  // }
+  public editContact(data: IContactAdmin, id: string): Observable < IContactAdmin > {
+    return this.httpClient.post<IContactAdmin>(`${this.appConfig.apiUrl}/admin/contacts/${id}`, data);
+  }
 
-  // public removeButton( id: string): Observable < IContact > {
-  //   return this.httpClient.post<IContact>(`${this.appConfig.apiUrl}/admin/buttons/remove/${id}`, id);
-  // }
+  public removeContact( id: string): Observable < IContactAdmin > {
+    return this.httpClient.post<IContactAdmin>(`${this.appConfig.apiUrl}/admin/contacts/remove/${id}`, id);
+  }
 
 }

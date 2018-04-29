@@ -1,0 +1,33 @@
+.container{
+    padding-top: 3%;
+}
+
+th{
+    color:white;
+}
+
+.btn{
+    margin: 5px;
+}
+
+.example-container {
+    margin-top:15px;
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+
+  }
+  
+  .example-header {
+    min-height: 64px;
+    padding: 8px 24px 0;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  .mat-table {
+    overflow: auto;
+  }

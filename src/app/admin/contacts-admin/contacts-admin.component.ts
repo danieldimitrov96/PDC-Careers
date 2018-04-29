@@ -37,8 +37,6 @@ export class ContactsAdminComponent {
     this.router.navigate(['admin', 'contacts', 'createOrEdit']);
   }
 
-
-
   public ngOnInit(): void {
     this.contacts = this.routerSnapshot.snapshot.data['contacts'];
     console.log(this.contacts);
@@ -48,23 +46,23 @@ export class ContactsAdminComponent {
 
   public onDelete(id: string): void {
 
-    // const dialogRef = this.dialog.open(DialogComponent, {
-    //   height: '170px',
-    // });
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   if (result) {
-    //     this.contactsService.removeButton(id).subscribe(
-    //       (res) => {
-    //         this.toastr.success('Edited button', 'Success!');
-    //         this.dataSource.data = this.dataSource.data.filter((x) => x._id !== id);
-    //       },
-    //       (err: HttpErrorResponse) => {
-    //         if (err.status === this.duplicatedStatus) {
-    //           this.toastr.error('Check your internet Conn', 'Error');
-    //         }
-    //       });
-    //   }
-    // });
+    const dialogRef = this.dialog.open(DialogComponent, {
+      height: '170px',
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.contactsService.removeContact(id).subscribe(
+          (res) => {
+            this.toastr.success('Edited button', 'Success!');
+            this.dataSource.data = this.dataSource.data.filter((x) => x._id !== id);
+          },
+          (err: HttpErrorResponse) => {
+            if (err.status === this.duplicatedStatus) {
+              this.toastr.error('Check your internet Conn', 'Error');
+            }
+          });
+      }
+    });
   }
   public onEdit(row: IContactAdmin): void {
     this.data.changeContactsDataEditObject(row);

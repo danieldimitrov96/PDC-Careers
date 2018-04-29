@@ -29,41 +29,41 @@ export class CreateEditContactsAdminComponent implements OnInit {
               private toastr: ToastrService) {}
 
   public ngOnInit(): void {
-    this.data.contactsDataEditObject.subscribe((obj) => this.editObj = obj);
+    this.data.contactsCurrentEditObject.subscribe((obj) => this.editObj = obj);
   }
   public ngOnDestroy(): void {
     this.data.changeContactsDataEditObject(this.templateRowObject);
   }
   public onSubmit(form: NgForm): void {
-    // // TODO HANDLE ERROR TOASTR
-    // if (!form.value.hidden) {
-    //   form.value.hidden = false;
-    // }
-    // if (this.editObj._id) {
-    //   form.value._id = this.editObj._id;
+    // TODO HANDLE ERROR TOASTR
+    if (!form.value.hidden) {
+      form.value.isPrimary = false;
+    }
+    if (this.editObj._id) {
+      form.value._id = this.editObj._id;
 
-    //   this.contactService.editButton(form.value, form.value._id).subscribe(
-    //     (res) => {
-    //       this.toastr.success('Edited button', 'Success!');
-    //       this.router.navigate(['admin', 'buttons']);
-    //     },
-    //     (err: HttpErrorResponse) => {
-    //       if (err.status === this.duplicatedStatus && form.value.name) {
-    //         this.toastr.error('Check your internet Conn', 'Error');
-    //       }
-    //     });
-    // } else {
-    //   this.contactService.createButton(form.value).subscribe(
-    //     (res) => {
-    //       this.toastr.success('Added button', 'Success!');
-    //       this.router.navigate(['admin', 'buttons']);
-    //     },
-    //     (err: HttpErrorResponse) => {
-    //       if (err.status === this.duplicatedStatus && form.value.name) {
-    //         this.toastr.error('Name is already used', 'Error');
-    //       }
-    //     });
-    // }
+      this.contactService.editContact(form.value, form.value._id).subscribe(
+        (res) => {
+          this.toastr.success('Edited button', 'Success!');
+          this.router.navigate(['admin', 'contacts']);
+        },
+        (err: HttpErrorResponse) => {
+          if (err.status === this.duplicatedStatus && form.value.name) {
+            this.toastr.error('Check your internet Conn', 'Error');
+          }
+        });
+    } else {
+      this.contactService.createContact(form.value).subscribe(
+        (res) => {
+          this.toastr.success('Added button', 'Success!');
+          this.router.navigate(['admin', 'contacts']);
+        },
+        (err: HttpErrorResponse) => {
+          if (err.status === this.duplicatedStatus && form.value.name) {
+            this.toastr.error('Name is already used', 'Error');
+          }
+        });
+    }
   }
 
 }
