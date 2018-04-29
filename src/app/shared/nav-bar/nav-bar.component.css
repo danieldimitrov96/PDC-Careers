@@ -6,3 +6,29 @@
 .logout:hover {
     color: #fed136 !important;
 }
+
+
+.dropdown-menu a{
+    background-color: #26292E;
+    color: white !important;
+}
+
+
+.dropdown-menu a:hover {
+    background-color: white;
+    color: #26292E !important;
+    }
+
+.dropdown-menu {
+    background-color: #26292E;
+    color: white !important;
+}
+
+.nav-link{
+    cursor: pointer;
+}
+
+.custom-drop-down{
+    background-color: #26292E;
+    
+}

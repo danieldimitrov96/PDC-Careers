@@ -12,12 +12,25 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">Home</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item ">
           <a class="nav-link" [routerLink]="['/careers']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">Careers</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item ">
           <a class="nav-link" [routerLink]="['/contacts']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">Contacts</a>
         </li>
+        <div class="custom-drop-down">
+        <li ngbDropdown  class="nav-item" >
+          <a ngbDropdownToggle class="nav-link dropdown-toggle">
+           Administration
+          </a>
+          <div ngbDropdownMenu  class="dropdown-menu">
+            <a class="dropdown-item" [routerLink]="['/admin/buttons']">Buttons</a>
+            <a class="dropdown-item" href="#">Careers</a>
+            <a class="dropdown-item" href="#">Contacts</a>
+          </div>
+        </li>
+      </div>
+
         </ul>
       <ul class="navbar-nav text-uppercase ml-auto">
         <ng-template [ngIf] = "!isAuth()">
