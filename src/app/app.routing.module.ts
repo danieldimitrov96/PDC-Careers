@@ -1,14 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ButtonsResolver } from './admin/admin-core/resolvers/buttons.resolver';
 import { ButtonsComponent } from './admin/buttons/buttons.component';
-import { CreateEditButtonsComponent } from './admin/create-edit-buttons/create-edit-buttons.component';
+import { ContactsAdminComponent } from './admin/contacts-admin/contacts-admin.component';
+import {
+    CreateEditButtonsComponent
+} from './admin/create-edit-buttons/create-edit-buttons.component';
+import {
+    CreateEditContactsAdminComponent
+} from './admin/create-edit-contacts-admin/create-edit-contacts-admin.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { CareersComponent } from './careers/careers.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { HomeComponent } from './home/home.component';
-
-import { ButtonsResolver } from './admin/admin-core/resolvers/buttons.resolver';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -22,6 +27,9 @@ const routes: Routes = [
   },
   { path: 'admin/buttons', component: ButtonsComponent, pathMatch: 'full', resolve: { buttons: ButtonsResolver } },
   { path: 'admin/buttons/createOrEdit', component: CreateEditButtonsComponent, pathMatch: 'full' },
+  { path: 'admin/contacts', component: ContactsAdminComponent, pathMatch: 'full' },
+  { path: 'admin/contacts/createOrEdit', component: CreateEditContactsAdminComponent, pathMatch: 'full' },
+
 
 ];
 

@@ -8,7 +8,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { AdminCoreModule } from './admin-core/admin-core.module';
 import { ButtonsComponent } from './buttons/buttons.component';
+import { ContactsAdminComponent } from './contacts-admin/contacts-admin.component';
 import { CreateEditButtonsComponent } from './create-edit-buttons/create-edit-buttons.component';
+import {
+    CreateEditContactsAdminComponent,
+} from './create-edit-contacts-admin/create-edit-contacts-admin.component';
 import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
@@ -16,6 +20,8 @@ import { DialogComponent } from './dialog/dialog.component';
     ButtonsComponent,
     DialogComponent,
     CreateEditButtonsComponent,
+    ContactsAdminComponent,
+    CreateEditContactsAdminComponent,
   ],
   imports: [
     RouterModule,
