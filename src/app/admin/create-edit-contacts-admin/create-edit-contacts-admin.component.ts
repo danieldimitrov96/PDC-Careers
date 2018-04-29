@@ -35,8 +35,7 @@ export class CreateEditContactsAdminComponent implements OnInit {
     this.data.changeContactsDataEditObject(this.templateRowObject);
   }
   public onSubmit(form: NgForm): void {
-    // TODO HANDLE ERROR TOASTR
-    if (!form.value.hidden) {
+    if (!form.value.isPrimary) {
       form.value.isPrimary = false;
     }
     if (this.editObj._id) {

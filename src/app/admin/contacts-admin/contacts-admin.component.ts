@@ -39,7 +39,6 @@ export class ContactsAdminComponent {
 
   public ngOnInit(): void {
     this.contacts = this.routerSnapshot.snapshot.data['contacts'];
-    console.log(this.contacts);
     this.dataSource = new MatTableDataSource(this.contacts);
     this.data.contactsCurrentEditObject.subscribe((obj) => this.editObj = obj);
   }
