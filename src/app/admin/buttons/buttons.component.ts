@@ -1,12 +1,13 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 import { ButtonsService } from '../admin-core/buttons.service';
 import { DataService } from '../admin-core/data.service';
 import { IButtonAdmin } from '../models/IButtonAdmin/IButtonAdmin';
+import { DialogComponent } from './dialog/dialog.component';
 
 @Component({
   selector: 'app-buttons',
@@ -26,10 +27,11 @@ export class ButtonsComponent {
   private editObj: IButtonAdmin;
 
   constructor(private buttonsService: ButtonsService,
-    private router: Router,
-    private data: DataService,
-    private routerSnapshot: ActivatedRoute,
-    private toastr: ToastrService) {}
+              private router: Router,
+              private data: DataService,
+              private routerSnapshot: ActivatedRoute,
+              private toastr: ToastrService,
+              private dialog: MatDialog) {}
 
   public ngOnInit(): void {
     this.buttons = this.routerSnapshot.snapshot.data['buttons'];
@@ -42,16 +44,24 @@ export class ButtonsComponent {
   }
 
   public onDelete(id: string): void {
-    this.buttonsService.removeButton(id).subscribe(
-      (res) => {
-        this.toastr.success('Edited button', 'Success!');
-        this.dataSource.data = this.dataSource.data.filter((x) => x._id !== id);
-      },
-      (err: HttpErrorResponse) => {
-        if (err.status === this.duplicatedStatus) {
-          this.toastr.error('Check your internet Conn', 'Error');
-        }
-      });
+
+    const dialogRef = this.dialog.open(DialogComponent, {
+      height: '170px',
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.buttonsService.removeButton(id).subscribe(
+          (res) => {
+            this.toastr.success('Edited button', 'Success!');
+            this.dataSource.data = this.dataSource.data.filter((x) => x._id !== id);
+          },
+          (err: HttpErrorResponse) => {
+            if (err.status === this.duplicatedStatus) {
+              this.toastr.error('Check your internet Conn', 'Error');
+            }
+          });
+      }
+    });
   }
   public onEdit(row: IButtonAdmin): void {
     this.data.changeDataEditObject(row);
