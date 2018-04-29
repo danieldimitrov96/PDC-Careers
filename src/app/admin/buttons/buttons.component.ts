@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ButtonsService } from '../admin-core/buttons.service';
 import { DataService } from '../admin-core/data.service';
 import { IButtonAdmin } from '../models/IButtonAdmin/IButtonAdmin';
-import { DialogComponent } from './dialog/dialog.component';
+import { DialogComponent } from './../dialog/dialog.component';
 
 @Component({
   selector: 'app-buttons',

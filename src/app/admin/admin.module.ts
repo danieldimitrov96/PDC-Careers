@@ -8,8 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { AdminCoreModule } from './admin-core/admin-core.module';
 import { ButtonsComponent } from './buttons/buttons.component';
-import { DialogComponent } from './buttons/dialog/dialog.component';
 import { CreateEditButtonsComponent } from './create-edit-buttons/create-edit-buttons.component';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
