@@ -67,6 +67,12 @@ export class ButtonsComponent {
     this.data.changeDataEditObject(row);
     this.router.navigate(['admin', 'buttons', 'createOrEdit']);
   }
+
+  public applyFilter(filterValue: string): void {
+    const filter = filterValue.trim().toLowerCase();
+    this.dataSource.filter = filter;
+  }
+
   private ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

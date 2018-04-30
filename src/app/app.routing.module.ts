@@ -9,12 +9,12 @@ import {
 import {
     CreateEditContactsAdminComponent
 } from './admin/create-edit-contacts-admin/create-edit-contacts-admin.component';
+import { UsersComponent } from './admin/users/users.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { CareersComponent } from './careers/careers.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { HomeComponent } from './home/home.component';
-import { UsersComponent } from './admin/users/users.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -31,7 +31,6 @@ const routes: Routes = [
   { path: 'admin/contacts', component: ContactsAdminComponent, pathMatch: 'full' },
   { path: 'admin/contacts/createOrEdit', component: CreateEditContactsAdminComponent, pathMatch: 'full' },
   { path: 'admin/users', component: UsersComponent, pathMatch: 'full'},
-
 
 ];
 

@@ -1,8 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatFormFieldControl, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { UsersService } from '../admin-core/users.service';
-import { AllUsersModel } from '../models/Users/AllUsersModel';
 import { SingleUserModel } from '../models/Users/SingleUserModel';
 
 @Component({
@@ -11,10 +10,10 @@ import { SingleUserModel } from '../models/Users/SingleUserModel';
   styleUrls: ['./users.component.css'],
 })
 export class UsersComponent implements OnInit {
-  public allUsers: AllUsersModel;
-  public allUsersSorted: AllUsersModel;
-  public displayedColumns = ['ID', 'Email', 'Jobs Applied', 'Registered At'];
-  public dataSource: MatTableDataSource<SingleUserModel>;
+  public allUsers: SingleUserModel[];
+  public allUsersSorted: SingleUserModel[];
+  public displayedColumns = ['id', 'email', 'totalApplications', 'createdAt'];
+  public dataSource = new MatTableDataSource<SingleUserModel>();
 
   @ViewChild(MatSort) public sort: MatSort;
   @ViewChild(MatPaginator) public paginator: MatPaginator;
@@ -25,14 +24,16 @@ export class UsersComponent implements OnInit {
     this.usersService.getAllUsers().subscribe(
       (data) => {
         this.allUsers = data;
-        console.log(this.allUsers);
         this.dataSource = new MatTableDataSource(this.allUsers);
-        this.dataSource.paginator = this.paginator;
+
+        setTimeout(() => {
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        });
       });
   }
-
-  public ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+  public applyFilter(filterValue: string): void {
+    const filter = filterValue.trim().toLowerCase();
+    this.dataSource.filter = filter;
   }
 }

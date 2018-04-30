@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatDialogModule, MatPaginatorModule, MatSortModule } from '@angular/material';
+import {
+    MatDialogModule, MatInputModule, MatPaginatorModule, MatSortModule,
+} from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -36,6 +38,7 @@ import { UsersComponent } from './users/users.component';
     MatFormFieldModule,
     MatSortModule,
     MatDialogModule,
+    MatInputModule,
   ],
   entryComponents: [
     DialogComponent,
