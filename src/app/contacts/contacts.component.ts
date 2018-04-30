@@ -9,8 +9,8 @@ import { IContacts } from '../models/contacts/IContacts';
   styleUrls: ['./contacts.component.css'],
 })
 export class ContactsComponent implements OnInit {
-  public lat: number = 0;
-  public lng: number = 0;
+  public lat: number = 42.733883;
+  public lng: number = 25.48583;
 
   public googleAPIkey = 'AIzaSyDdmPnh0DZQpsLa7fZ5n5TPSW0nD6pTN3s';
   public searchCity: string;

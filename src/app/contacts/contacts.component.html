@@ -9,7 +9,7 @@
         <br>Addres: {{contact.address}}</p>
     </div>
     <div class="col-md-6 mx-auto">
-      <agm-map [latitude]="lat" [longitude]="lng">
+      <agm-map [zoom]="17" [latitude]="lat" [longitude]="lng">
         <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
       </agm-map>
     </div>

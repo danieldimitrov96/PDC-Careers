@@ -59,7 +59,7 @@ export function tokenGetter() {
         preventDuplicates: true,
       }),
       AgmCoreModule.forRoot({
-        apiKey: 'AIzaSyD9kOt3N8gGOYNE48xsLGocMaIpyKsZC1E'
+        apiKey: 'AIzaSyD9kOt3N8gGOYNE48xsLGocMaIpyKsZC1E',
       }),  
   ],
 providers: [AppConfig],
