@@ -4,9 +4,9 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RequestOptions } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs/Observable';
 
-import { AuthService } from '../../core/auth.service';
 import { CareersService } from '../../core/careers.service';
 import { JobModel } from '../../models/careers/JobModel';
 
@@ -16,7 +16,6 @@ import { JobModel } from '../../models/careers/JobModel';
   styleUrls: ['./job-apply.component.css'],
 })
 export class JobApplyComponent implements OnInit {
-
   public id: string;
   public job: JobModel;
   public form: FormGroup;
@@ -26,11 +25,13 @@ export class JobApplyComponent implements OnInit {
   private minLength = 3;
   private maxLength = 100;
   private commentMax = 1024;
+  private KB = 1024;
+  private maxKB = 16000;
 
   constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute,
               private careersService: CareersService,
               private location: Location,
-              private authService: AuthService) {
+              private toastr: ToastrService) {
     this.createForm();
   }
   public ngOnInit(): void {
@@ -42,7 +43,6 @@ export class JobApplyComponent implements OnInit {
       .getCurrentJob(this.id)
       .subscribe((data) => {
         this.job = data;
-        console.log(this.job);
       });
   }
   public createForm(): void {
@@ -56,48 +56,55 @@ export class JobApplyComponent implements OnInit {
   }
 
   public onFileChange(event: any): void {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.form.get('CV').setValue(file);
-      this.form.get('CoverLetter').setValue(file);
+    if (event.currentTarget.files.length > 0) {
+      const file = event.currentTarget.files[0];
+      if (this.validFileExtension(file.name) && this.validFileSize(file.size)) {
+        this.form.get(event.currentTarget.id).setValue(file);
+      } else {
+        this.toastr.error('Files must be of type pdf, doc or docx and no more than 16MB!', 'Invalid File', { timeOut: 5000 });
+      }
     }
   }
 
   public onSubmit(): void {
     const formModel = this.prepareSave();
     this.loading = true;
-    console.log(formModel);
-    console.log(this.id);
-    console.log(this.form.value);
-
     this.careersService.applyForJob(this.id, formModel).subscribe(
       (res) => {
-        console.log('Success');
+        this.toastr.success(`Successfully applied for, ${this.job.title}`);
+        this.location.back();
       },
       (err: HttpErrorResponse) => {
-        console.log('Fail');
+        this.toastr.error('You previously applied for this position!');
+        this.location.back();
       });
 
     setTimeout(() => {
-      // FormData cannot be inspected (see "Key difference"), hence no need to log it here
-      alert('done!');
       this.loading = false;
       // tslint:disable-next-line:no-magic-numbers
     },         1000);
   }
 
   public onBack(): void {
-    this.form.get('CV').setValue(null);
-    this.form.get('CoverLetter').setValue(null);
-    this.form.get('firstName').setValue(null);
-    this.form.get('lastName').setValue(null);
-    this.form.get('comment').setValue(null);
-    this.CV.nativeElement.value = '';
-    this.coverLetter.nativeElement.value = '';
     this.location.back();
-    // firstName.nativeElement.value = '';
-    // this.CoverLetter.nativeElement.value = '';
-    // this.CoverLetter.nativeElement.value = '';
+  }
+
+  private validFileExtension(fileName: string): boolean {
+    const extension = fileName.substr(fileName.lastIndexOf('.'));
+    // tslint:disable-next-line:prefer-switch
+    if (extension === '.pdf' || extension === '.doc'
+      || extension === '.docx') {
+      return true;
+    }
+    return false;
+  }
+
+  private validFileSize(fileSize: number): boolean {
+    const fileSizeKB = fileSize / this.KB;
+    if (fileSizeKB <= this.maxKB) {
+      return true;
+    }
+    return false;
   }
 
   private prepareSave(): FormData {
