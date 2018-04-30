@@ -1,4 +1,5 @@
-import { Component, OnInit, Pipe } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { ContactsService } from '../core/contacts.service';
 import { IContacts } from '../models/contacts/IContacts';
 
@@ -8,14 +9,18 @@ import { IContacts } from '../models/contacts/IContacts';
   styleUrls: ['./contacts.component.css'],
 })
 export class ContactsComponent implements OnInit {
-  public googleAPIkey = 'AIzaSyD9kOt3N8gGOYNE48xsLGocMaIpyKsZC1E';
+  public lat: number = 0;
+  public lng: number = 0;
+
+  public googleAPIkey = 'AIzaSyDdmPnh0DZQpsLa7fZ5n5TPSW0nD6pTN3s';
   public searchCity: string;
   public googleMapsURL: string;
 
   public contacts: IContacts;
   public primeryRootContact: object;
 
-  constructor(private contactService: ContactsService) { }
+  constructor(private contactService: ContactsService,
+              private http: HttpClient) { }
 
   public  ngOnInit(): void {
     this.contactService.getAll().subscribe((data) => {
@@ -24,9 +29,12 @@ export class ContactsComponent implements OnInit {
         this.primeryRootContact = data.firstPrimary;
         this.searchCity = data.firstPrimary.address;
         this.searchCity = this.searchCity.replace(/ /g, '+');
-        this.googleMapsURL = `https://www.google.com/maps/embed/v1/place?key=${this.googleAPIkey}&q=${this.searchCity}`;
+        this.googleMapsURL = `https://maps.googleapis.com/maps/api/geocode/json?address=${this.searchCity}&key=${this.googleAPIkey}`;
+        this.http.get(this.googleMapsURL).subscribe((x: any) => {
+        this.lat = x.results[0].geometry.location.lat;
+        this.lng = x.results[0].geometry.location.lng;
+        });
       }
     });
-
   }
 }

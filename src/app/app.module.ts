@@ -1,3 +1,4 @@
+import { AgmCoreModule } from '@agm/core';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -13,15 +14,14 @@ import { Observable } from 'rxjs/Rx';
 import { AdminModule } from './admin/admin.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
-// import { AuthModule } from './auth/auth.module';
-// import { CareersModule } from './careers/careers.module';
 import { AppConfig } from './config/app.config';
 import { ContactsComponent } from './contacts/contacts.component';
-import { SafePipe } from './contacts/googleMapsUrl.pipe';
 import { CoreModule } from './core/core.module';
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from './shared/shared.module';
 
+// import { AuthModule } from './auth/auth.module';
+// import { CareersModule } from './careers/careers.module';
 /* tslint:disable */
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -33,7 +33,6 @@ export function tokenGetter() {
     AppComponent,
     HomeComponent,
     ContactsComponent,
-    SafePipe,
   ],
   imports: [
     AdminModule,
@@ -44,8 +43,6 @@ export function tokenGetter() {
     SharedModule,
     RouterModule,
     AppRoutingModule,
-    // AuthModule,
-    // CareersModule,
     HttpClientModule,
     FormsModule,
     JwtModule.forRoot({
@@ -61,6 +58,9 @@ export function tokenGetter() {
         positionClass: 'toast-top-center',
         preventDuplicates: true,
       }),
+      AgmCoreModule.forRoot({
+        apiKey: 'AIzaSyD9kOt3N8gGOYNE48xsLGocMaIpyKsZC1E'
+      }),  
   ],
 providers: [AppConfig],
   bootstrap: [AppComponent],

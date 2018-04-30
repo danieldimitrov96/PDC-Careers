@@ -1,17 +1,17 @@
 <div class="container">
   <h2>Contacts</h2>
   <div class="row">
-    
+
     <div *ngIf="contacts" class="col-md-6">
-        
-      <p *ngFor="let contact of contacts.all"> 
-        <img src="./../../favicon.ico" style='float: left;'>
-        Office: {{contact.name}}<br>Addres: {{contact.address}}</p>
+
+      <p *ngFor="let contact of contacts.all">
+        <img src="./../../favicon.ico" style='float: left;'> Office: {{contact.name}}
+        <br>Addres: {{contact.address}}</p>
     </div>
     <div class="col-md-6 mx-auto">
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" [src]="googleMapsURL | safe" frameborder="0" style="border:0" align="middle" allowfullscreen></iframe>
-      </div>
+      <agm-map [latitude]="lat" [longitude]="lng">
+        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+      </agm-map>
     </div>
   </div>
 </div>
