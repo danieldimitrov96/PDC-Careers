@@ -20,8 +20,7 @@ import { CoreModule } from './core/core.module';
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from './shared/shared.module';
 
-// import { AuthModule } from './auth/auth.module';
-// import { CareersModule } from './careers/careers.module';
+
 /* tslint:disable */
 export function tokenGetter() {
   return localStorage.getItem('token');
