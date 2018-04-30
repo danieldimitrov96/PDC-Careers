@@ -14,6 +14,7 @@ import {
     CreateEditContactsAdminComponent,
 } from './create-edit-contacts-admin/create-edit-contacts-admin.component';
 import { DialogComponent } from './dialog/dialog.component';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { DialogComponent } from './dialog/dialog.component';
     CreateEditButtonsComponent,
     ContactsAdminComponent,
     CreateEditContactsAdminComponent,
+    UsersComponent,
   ],
   imports: [
     RouterModule,
