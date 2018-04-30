@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppConfig } from '../config/app.config';
 import { HomeButtonsService } from '../core/home-buttons.service';
 import { IButton } from '../models/buttons/IButton';
 
@@ -9,8 +10,11 @@ import { IButton } from '../models/buttons/IButton';
 })
 export class HomeComponent implements OnInit {
 
+  public homeText = this.appConfig.homePageText;
+  public fbPage = this.appConfig.homePageFB;
   public actionButtons: IButton[] = [];
-  constructor(private homeButtonsService: HomeButtonsService) { }
+  constructor(private homeButtonsService: HomeButtonsService,
+              private appConfig: AppConfig) { }
 
   public  ngOnInit(): void {
     this.homeButtonsService.getAll().subscribe((data) => {

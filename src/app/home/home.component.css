@@ -12,3 +12,25 @@
 .btn-xl {
   margin: 10px;
 }
+.border{
+  border: thick 1px yellow !important;
+  border-radius: 1px solid;
+  border-color: yellow;
+  width:400px;
+  height: 330px;
+  display:flex;
+  align-items:center;  
+  padding: 0 !important;
+  margin-top: 20px;
+}
+
+
+.zeroPadding{
+  padding: 0 !important;
+  
+}
+
+
+    iframe {
+      padding-top: 20px;
+  }
