@@ -1,15 +1,3 @@
-.container {
-  padding-top: 3%;
-}
-
-th {
-  color: white;
-}
-
-.btn {
-  margin: 5px;
-}
-
 .example-container {
   display: flex;
   flex-direction: column;
@@ -26,11 +14,7 @@ th {
   width: 100%;
 }
 
-.mat-table {
-  overflow: auto;
-}
-
-.buttonsTitle {
+.usersTitle {
   color: #fed136;
   padding-top: 3%;
   padding-left: 3%;
