@@ -5,11 +5,12 @@ import { ContactsAdminResolver } from './admin/admin-core/resolvers/contacts.res
 import { ButtonsComponent } from './admin/buttons/buttons.component';
 import { ContactsAdminComponent } from './admin/contacts-admin/contacts-admin.component';
 import {
-    CreateEditButtonsComponent
+    CreateEditButtonsComponent,
 } from './admin/create-edit-buttons/create-edit-buttons.component';
 import {
-    CreateEditContactsAdminComponent
+    CreateEditContactsAdminComponent,
 } from './admin/create-edit-contacts-admin/create-edit-contacts-admin.component';
+import { UsersComponent } from './admin/users/users.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { CareersComponent } from './careers/careers.component';
@@ -31,7 +32,8 @@ const routes: Routes = [
   { path: 'admin/buttons/createOrEdit', component: CreateEditButtonsComponent, pathMatch: 'full' },
   { path: 'admin/contacts', component: ContactsAdminComponent, pathMatch: 'full',  resolve: { contacts: ContactsAdminResolver }  },
   { path: 'admin/contacts/createOrEdit', component: CreateEditContactsAdminComponent, pathMatch: 'full' },
-  { component: NotFoundComponent, path: '404' },
+  { path: 'admin/users', component: UsersComponent, pathMatch: 'full'},
+  { path: '404', component: NotFoundComponent },
   { path: '**', redirectTo: '404' },
 
 ];

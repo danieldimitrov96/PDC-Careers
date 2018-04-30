@@ -1,5 +1,7 @@
 <div class="container">
-  <h2>Buttons</h2>
+    <div class="row col-xs-12 col-md-9 col-lg-6 ">
+        <h2 class="buttonsTitle">Buttons</h2>
+      </div>
   <div (click)="onCreate()" class="btn btn-secondary">Create</div>
 
   <div *ngIf="dataSource?.data.length === 0" class="example-container mat-elevation-z8">
@@ -9,7 +11,11 @@
   </div>
 
   <div *ngIf="dataSource?.data.length !== 0" class="example-container mat-elevation-z8">
-
+    <div class="example-header">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+      </mat-form-field>
+    </div>
     <mat-table [dataSource]="dataSource" matSort>
 
       <ng-container matColumnDef="_id">
