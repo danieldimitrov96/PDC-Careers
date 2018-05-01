@@ -10,7 +10,11 @@ import { AuthService } from '../../core/auth.service';
 })
 export class NavBarComponent implements OnInit {
   public userEmail: string;
-  constructor(public authService: AuthService) {}
+  public isCollapsed: boolean;
+
+  constructor(public authService: AuthService) {
+    this.isCollapsed = true;
+  }
 
   public ngOnInit(): void {
     this.userEmail = this.authService.getUserInfoBy('email');
