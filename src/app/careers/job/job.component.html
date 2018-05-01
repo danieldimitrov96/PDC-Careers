@@ -2,8 +2,6 @@
   <div class="row">
     <div class="col-sm-12">
       <mat-card class="jobAd">
-
-
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
           <mat-card-title>
@@ -14,11 +12,18 @@
           <!-- <mat-card-subtitle>{{job?.category}}</mat-card-subtitle> -->
         </mat-card-header>
         <mat-card-content>
-          <p>{{job?.description}} Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi, officiis minima quos soluta repellendus mollitia ex dolorum magnam ad quaerat aliquam cupiditate delectus minus? Fuga mollitia facilis corporis eveniet similique!</p>
+          <p>{{job?.description}} Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi, officiis minima quos soluta
+            repellendus mollitia ex dolorum magnam ad quaerat aliquam cupiditate delectus minus? Fuga mollitia facilis corporis
+            eveniet similique!</p>
         </mat-card-content>
         <mat-card-actions align="end">
-          <a class="float-rigth" (click)="onApply()">Apply</a>
+          <a class="btn btn-secondary" (click)="onApply()">Apply</a>
         </mat-card-actions>
+
+        <mat-card-actions align="end">
+          <a class="btn btn-secondary">View</a>
+        </mat-card-actions>
+        
         <hr>
         <mat-card-footer>
           <p>

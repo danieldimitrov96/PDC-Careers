@@ -41,9 +41,11 @@
           </li>
         </ng-template>
         <li class="nav-item" *ngIf = "isAuth()">
-          <a style="cursor:default" class="nav-item">Hello, {{userEmail}}</a>
-          <a class="nav-link" class="logout" style="cursor: pointer;" (click) = "onLogout()">Logout</a>
+          <a class="user nav-link nav-item">Hello, {{userEmail}}</a>
         </li>
+        <li class="nav-item" *ngIf = "isAuth()">
+            <a class="nav-link nav-item" (click) = "onLogout()">Logout</a>
+          </li>
       </ul>
     </div>
   </div>

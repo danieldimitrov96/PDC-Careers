@@ -17,7 +17,6 @@ mat-card-footer{
 
 mat-card-actions a{
     cursor: pointer;
-    color:yellow;
 }
 
 mat-card-content p{
@@ -31,3 +30,7 @@ mat-card-title p{
     font-weight: bold;
 }
 
+
+/* .float-rigth{
+    width: 100%;
+} */
