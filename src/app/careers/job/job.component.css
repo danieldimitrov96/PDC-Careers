@@ -2,6 +2,9 @@
     width: 500px;
 }
 
+.container{
+    padding: 3%;
+}
 
 mat-card-actions{
     padding: 10px;

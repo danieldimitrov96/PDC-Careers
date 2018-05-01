@@ -1,7 +1,5 @@
 <div class="container">
-  <div class="row col-xs-12 col-md-9 col-lg-6 ">
-    <h2 class="careersTitle">Open positions</h2>
-  </div>
+  <h2 class="containerTitle">Open positions</h2>
   <div class="row" *ngIf="allJobs?.length !== 0; else nodata">
     <div class="col-md-9 allCareers">
       <div class="singleJob col-md-9" *ngFor="let job of allJobsFiltered">

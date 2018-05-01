@@ -1,10 +1,5 @@
-.careersTitle {
-  color: #fed136;
-  padding-top: 3%;
-  padding-left: 3%;
-}
 .allCareers {
-  padding-top: 7%;
+  padding-top: 3%;
 }
 
 .jobCard {
@@ -36,4 +31,8 @@
 .filtering {
   padding-top: 4%;
   padding-left: 2%;
+}
+
+.container{
+  padding-top: 3%;
 }
