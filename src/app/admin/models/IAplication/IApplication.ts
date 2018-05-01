@@ -1,3 +1,8 @@
+export interface IApplicationData {
+    context: IApplication[];
+    title: string;
+}
+
 export interface IApplication {
     firstName: string;
     lastName: string;

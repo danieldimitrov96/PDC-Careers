@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../core/auth.service';
 import { CareersService } from '../../core/careers.service';
 import { ApplicationAdminServiceService } from '../admin-core/admin-application.service';
-import { IApplication } from '../models/IAplication/IApplication';
+import { IApplication, IApplicationData } from '../models/IAplication/IApplication';
 import { IAppliedUsers, IJobModelAdmin } from '../models/IJobModelAdmin/IJobModelAdmin';
 
 @Component({
@@ -22,6 +22,7 @@ export class AppliedUsersForAJobComponent implements OnInit {
   @ViewChild(MatSort) public sort: MatSort;
 
   public job: IJobModelAdmin;
+  public jobTitle: string;
   public id: string;
   public usersApplied: IAppliedUsers[] = [];
   public userEmail: string;
@@ -36,8 +37,9 @@ export class AppliedUsersForAJobComponent implements OnInit {
       .subscribe((x) => {
         this.id = x.id;
       });
-    this.applicationService.getApplicationWithJobId(this.id).subscribe((data: IApplication[]) => {
-      this.dataSource = new MatTableDataSource(data);
+    this.applicationService.getApplicationWithJobId(this.id).subscribe((data: IApplicationData) => {
+      this.dataSource = new MatTableDataSource(data.context);
+      this.jobTitle = data.title;
       setTimeout(() => {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
