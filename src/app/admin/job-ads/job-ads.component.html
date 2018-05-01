@@ -2,6 +2,7 @@
   <div class="row col-xs-12 col-md-9 col-lg-6 ">
     <h2 class="jobsTitle">All Job Ads</h2>
   </div>
+  <div (click)="onCreate()" class="btn btn-secondary">Create</div>
   <div *ngIf="dataSource?.data.length !== 0" class="example-container mat-elevation-z8">
     <div class="example-header">
       <mat-form-field>
@@ -40,7 +41,7 @@
       <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef> Action</mat-header-cell>
         <mat-cell *matCellDef="let job">
-          <div (click)="onEdit(job)" class="btn btn-sm btn-secondary">Edit</div>
+          <div (click)="onEdit(job.id)" class="btn btn-sm btn-secondary">Edit</div>
           <div (click)="onDelete(job.id)" class="btn btn-sm btn-secondary">Delete</div>
         </mat-cell>
       </ng-container>

@@ -9,7 +9,11 @@
   </div>
 
   <div *ngIf="dataSource?.data.length !== 0" class="example-container mat-elevation-z8">
-
+    <div class="example-header">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+      </mat-form-field>
+    </div>
     <mat-table [dataSource]="dataSource" matSort>
 
       <ng-container matColumnDef="_id">

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponseBase } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
@@ -21,5 +21,13 @@ export class JobsService {
 
   public getAllCategories(): Observable<JobCategoryModel[]> {
     return this.httpClient.get<JobCategoryModel[]>(`${this.appConfig.apiUrl}/admin/categories`);
+  }
+
+  public createEditJob(id: string, content: FormData): Observable<SingleJobModel> {
+    return this.httpClient.post<SingleJobModel>(`${this.appConfig.apiUrl}/admin/jobs/${id}`, content);
+  }
+
+  public deleteJob(id: string): Observable<SingleJobModel> {
+    return this.httpClient.post<SingleJobModel>(`${this.appConfig.apiUrl}/admin/jobs/remove/${id}`, id);
   }
 }
