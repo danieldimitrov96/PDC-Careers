@@ -10,6 +10,8 @@ import {
 import {
     CreateEditContactsAdminComponent,
 } from './admin/create-edit-contacts-admin/create-edit-contacts-admin.component';
+import { CreateEditJobComponent } from './admin/job-ads/create-edit-job/create-edit-job.component';
+import { JobAdsComponent } from './admin/job-ads/job-ads.component';
 import { UsersComponent } from './admin/users/users.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
@@ -33,6 +35,9 @@ const routes: Routes = [
   { path: 'admin/contacts', component: ContactsAdminComponent, pathMatch: 'full',  resolve: { contacts: ContactsAdminResolver }  },
   { path: 'admin/contacts/createOrEdit', component: CreateEditContactsAdminComponent, pathMatch: 'full' },
   { path: 'admin/users', component: UsersComponent, pathMatch: 'full'},
+  { path: 'admin/jobs', component: JobAdsComponent, pathMatch: 'full'},
+  { path: 'admin/jobs/createedit', component: CreateEditJobComponent, pathMatch: 'full'},
+  { path: 'admin/jobs/createedit/:id', component: CreateEditJobComponent, pathMatch: 'full'},
   { path: '404', component: NotFoundComponent },
   { path: '**', redirectTo: '404' },
 

@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
-    MatDialogModule, MatInputModule, MatPaginatorModule, MatSortModule,
+    MatDialogModule, MatInputModule, MatPaginatorModule, MatSortModule
 } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
@@ -16,6 +16,8 @@ import {
     CreateEditContactsAdminComponent,
 } from './create-edit-contacts-admin/create-edit-contacts-admin.component';
 import { DialogComponent } from './dialog/dialog.component';
+import { CreateEditJobComponent } from './job-ads/create-edit-job/create-edit-job.component';
+import { JobAdsComponent } from './job-ads/job-ads.component';
 import { UsersComponent } from './users/users.component';
 
 @NgModule({
@@ -26,9 +28,12 @@ import { UsersComponent } from './users/users.component';
     ContactsAdminComponent,
     CreateEditContactsAdminComponent,
     UsersComponent,
+    JobAdsComponent,
+    CreateEditJobComponent,
   ],
   imports: [
     RouterModule,
+    ReactiveFormsModule,
     CommonModule,
     AdminCoreModule,
     FormsModule,
