@@ -4,7 +4,9 @@
     <div class="col-md-9 allCareers">
       <div class="singleJob col-md-9" *ngFor="let job of allJobsFiltered">
         <mat-card class="jobCard">
-          <a class="jobTitle" [routerLink]="['/careers', job.id]" id="{{job.id}}">{{job.title}}</a>
+          <mat-card-content>
+            <a class="jobTitle" [routerLink]="['/careers', job.id]" id="{{job.id}}">{{job.title}}</a>
+          </mat-card-content>
         </mat-card>
         <hr>
       </div>

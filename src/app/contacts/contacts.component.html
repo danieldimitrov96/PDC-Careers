@@ -1,13 +1,17 @@
 <div class="container">
   <h2 class="containerTitle">Contacts</h2>
   <div class="row">
-
     <div *ngIf="contacts" class="col-md-6">
 
       <p *ngFor="let contact of contacts.all">
-        <img src="./../../favicon.ico" style='float: left;'> Office: {{contact.name}}
+        <img src="./../../favicon.ico"> Office: {{contact.name}}
         <br>Addres: {{contact.address}}</p>
     </div>
+
+    <div *ngIf="!contacts" class="col-md-6">
+      <p> No contacts. Please try again later.</p>
+    </div>
+
     <div class="col-md-6 mx-auto">
       <agm-map [zoom]="17" [latitude]="lat" [longitude]="lng">
         <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>

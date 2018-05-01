@@ -3,13 +3,13 @@
 }
 
 .jobCard {
-  height: 70px;
   border-radius: 2px;
 }
+
 .jobTitle {
   color: #fed136 !important;
   cursor: pointer;
-  font-size: 1.4em;
+  font-size: 1.6em;
 }
 
 .categoryType {
