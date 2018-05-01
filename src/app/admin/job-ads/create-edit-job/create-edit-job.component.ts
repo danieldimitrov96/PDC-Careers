@@ -78,8 +78,7 @@ export class CreateEditJobComponent implements OnInit {
         } else if (err.status === this.errorStatus) {
           this.toastr.error('Something went wrong', 'Try Again');
         }
-      },
-    );
+      });
   }
 
   public onBack(): void {

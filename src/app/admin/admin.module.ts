@@ -2,12 +2,14 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
-    MatDialogModule, MatInputModule, MatPaginatorModule, MatSortModule
+    MatDialogModule, MatInputModule, MatPaginatorModule, MatSortModule,
 } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+
 import { AdminCoreModule } from './admin-core/admin-core.module';
 import { ButtonsComponent } from './buttons/buttons.component';
 import { ContactsAdminComponent } from './contacts-admin/contacts-admin.component';
@@ -44,6 +46,8 @@ import { UsersComponent } from './users/users.component';
     MatSortModule,
     MatDialogModule,
     MatInputModule,
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot(),
   ],
   entryComponents: [
     DialogComponent,
