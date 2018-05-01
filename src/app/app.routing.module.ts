@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ButtonsResolver } from './admin/admin-core/resolvers/buttons.resolver';
 import { ContactsAdminResolver } from './admin/admin-core/resolvers/contacts.resolver';
+import {
+    AppliedUsersForAJobComponent,
+} from './admin/applied-users-for-a-job/applied-users-for-a-job.component';
 import { ButtonsComponent } from './admin/buttons/buttons.component';
 import { ContactsAdminComponent } from './admin/contacts-admin/contacts-admin.component';
 import {
@@ -28,6 +31,7 @@ const routes: Routes = [
       { path: '', component: ContactsComponent, pathMatch: 'full' },
     ],
   },
+  { path: 'admin/jobs/:id', component: AppliedUsersForAJobComponent },
   { path: 'admin/buttons', component: ButtonsComponent, pathMatch: 'full', resolve: { buttons: ButtonsResolver } },
   { path: 'admin/buttons/createOrEdit', component: CreateEditButtonsComponent, pathMatch: 'full' },
   { path: 'admin/contacts', component: ContactsAdminComponent, pathMatch: 'full',  resolve: { contacts: ContactsAdminResolver }  },

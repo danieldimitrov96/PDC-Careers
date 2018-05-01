@@ -46,7 +46,7 @@ export class JobComponent {
     }
   }
 
-  // public onApply(): void {
-  //   this.jobApplied.emit(this.job);
-  // }
+  public onView(): void {
+    this.router.navigate([`/admin/jobs/${this.id}`]);
+  }
 }
