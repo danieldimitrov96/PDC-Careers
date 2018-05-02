@@ -12,6 +12,8 @@ export class HomeComponent implements OnInit {
 
   public homeText = this.appConfig.homePageText;
   public fbPage = this.appConfig.homePageFB;
+  public background = './../../assets/back-ground.jpeg';
+  public offset = 700;
   public actionButtons: IButton[] = [];
   constructor(private homeButtonsService: HomeButtonsService,
               private appConfig: AppConfig) { }
