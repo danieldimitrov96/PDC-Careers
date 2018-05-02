@@ -35,9 +35,10 @@ export class AuthService {
   public logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('expiresAt');
+    this.router.navigate(['/']);
   }
 
-  public getUserInfoBy(param: string): string {
+  public getUserInfoBy(param: string): any {
     const token = this.jwtService.tokenGetter();
     if (token) {
       const decoded = this.jwtService.decodeToken(token);

@@ -4,6 +4,7 @@ import { ApplicationAdminServiceService } from './admin-application.service';
 import { ButtonsService } from './buttons.service';
 import { ContactsAdminService } from './contacts-admin.service';
 import { DataService } from './data.service';
+import { JobsService } from './jobs.service';
 import { ButtonsResolver } from './resolvers/buttons.resolver';
 import { ContactsAdminResolver } from './resolvers/contacts.resolver';
 import { UsersService } from './users.service';
@@ -20,6 +21,7 @@ import { UsersService } from './users.service';
     ContactsAdminService,
     UsersService,
     ApplicationAdminServiceService,
+    JobsService,
   ],
 })
 export class AdminCoreModule {}

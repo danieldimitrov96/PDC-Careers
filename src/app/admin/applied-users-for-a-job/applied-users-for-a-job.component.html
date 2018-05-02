@@ -44,5 +44,5 @@
     </mat-row>
   </mat-table>
 
-  <mat-paginator *ngIf="usersApplied.length > 10" [pageSizeOptions]="[10,20,100]"></mat-paginator>
+  <mat-paginator *ngIf="dataSource?.data.length > 10" [pageSizeOptions]="[10,20,100]"></mat-paginator>
 </div>

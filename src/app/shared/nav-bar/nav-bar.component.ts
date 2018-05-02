@@ -10,6 +10,7 @@ import { AuthService } from '../../core/auth.service';
 })
 export class NavBarComponent implements OnInit {
   public userEmail: string;
+  public isAdmin: boolean;
   public isCollapsed: boolean;
 
   constructor(public authService: AuthService) {
@@ -18,15 +19,18 @@ export class NavBarComponent implements OnInit {
 
   public ngOnInit(): void {
     this.userEmail = this.authService.getUserInfoBy('email');
+    this.isAdmin = this.authService.getUserInfoBy('isAdmin');
   }
 
   public ngDoCheck(): void {
     this.userEmail = this.authService.getUserInfoBy('email');
+    this.isAdmin = this.authService.getUserInfoBy('isAdmin');
   }
 
   public onLogout(): void {
     this.authService.logout();
     this.userEmail = null;
+    this.isAdmin = null;
   }
 
   public isAuth(): boolean {

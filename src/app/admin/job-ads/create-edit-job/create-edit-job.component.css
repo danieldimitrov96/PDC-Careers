@@ -1,0 +1,17 @@
+.title {
+  color: #fed136;
+  padding-bottom: 2%;
+}
+
+.fields {
+  padding-top: 5%;
+}
+
+.fields label {
+  color: #fed136;
+  font-size: 1.2em;
+}
+
+.btn {
+    margin-top: 20px;
+}

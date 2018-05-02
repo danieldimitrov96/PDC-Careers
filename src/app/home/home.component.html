@@ -8,7 +8,7 @@
             <div class="intro-heading text-uppercase">It's Nice To Meet You</div>
 
             <ng-container *ngFor="let actionButton of actionButtons">
-              <a *ngIf="!actionButton.hidden" href="https://{{actionButton.name}}.com" class="btn btn-primary btn-xl text-uppercase" target="_blank">{{actionButton.name}}</a>
+              <a *ngIf="!actionButton.hidden" href="{{actionButton.link}}" class="btn btn-primary btn-xl text-uppercase" target="_blank">{{actionButton.name}}</a>
             </ng-container>
 
           </div>

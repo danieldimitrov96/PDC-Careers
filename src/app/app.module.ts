@@ -20,7 +20,6 @@ import { CoreModule } from './core/core.module';
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from './shared/shared.module';
 
-
 /* tslint:disable */
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -59,7 +58,7 @@ export function tokenGetter() {
       }),
       AgmCoreModule.forRoot({
         apiKey: 'AIzaSyD9kOt3N8gGOYNE48xsLGocMaIpyKsZC1E',
-      }),  
+      }),
   ],
 providers: [AppConfig],
   bootstrap: [AppComponent],

@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row col-xs-12 col-md-9 col-lg-6 ">
+    <h2 class="jobsTitle">All Job Ads</h2>
+  </div>
+  <div (click)="onCreate()" class="btn btn-secondary">Create</div>
+  <div *ngIf="dataSource?.data.length !== 0" class="example-container mat-elevation-z8">
+    <div class="example-header">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+      </mat-form-field>
+    </div>
+
+    <mat-table [dataSource]="dataSource" matSort>
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+        <mat-cell *matCellDef="let job"> {{job.id}} </mat-cell>
+      </ng-container>
+
+      <!-- Title Column -->
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
+        <mat-cell *matCellDef="let job">
+          <a [routerLink]="['/careers', job.id]" id="{{job.id}}">{{job.title}}</a>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+        <mat-cell *matCellDef="let job"> {{job.status}} </mat-cell>
+      </ng-container>
+
+      <!-- Date Created Column -->
+      <ng-container matColumnDef="createdAt">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Date Created </mat-header-cell>
+        <mat-cell *matCellDef="let job"> {{job.createdAt | date}} </mat-cell>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef> Action</mat-header-cell>
+        <mat-cell *matCellDef="let job">
+          <div (click)="onEdit(job.id)" class="btn btn-sm btn-secondary">Edit</div>
+          <div (click)="onDelete(job.id)" class="btn btn-sm btn-secondary">Delete</div>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator *ngIf="allJobs?.length > 10" [pageSizeOptions]="[10,20,100]"></mat-paginator>
+
+  </div>
+</div>

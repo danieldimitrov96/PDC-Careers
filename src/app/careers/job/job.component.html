@@ -12,15 +12,13 @@
           <!-- <mat-card-subtitle>{{job?.category}}</mat-card-subtitle> -->
         </mat-card-header>
         <mat-card-content>
-          <p>{{job?.description}} Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi, officiis minima quos soluta
-            repellendus mollitia ex dolorum magnam ad quaerat aliquam cupiditate delectus minus? Fuga mollitia facilis corporis
-            eveniet similique!</p>
+          <p [froalaView]="job?.description"></p>
         </mat-card-content>
         <mat-card-actions align="end">
           <a class="btn btn-secondary" (click)="onApply()">Apply</a>
         </mat-card-actions>
 
-        <mat-card-actions align="end">
+        <mat-card-actions align="end" *ngIf="isAdmin">
           <a class="btn btn-secondary"  (click)="onView()">View all users applied</a>
         </mat-card-actions>
         

@@ -47,7 +47,7 @@ export class JobApplyComponent implements OnInit {
   }
   public createForm(): void {
     this.form = this.fb.group({
-      firstName: ['', [Validators.required, Validators.minLength(this.minLength)]],
+      firstName: ['', [Validators.required, Validators.minLength(this.minLength), Validators.maxLength(this.maxLength)]],
       lastName: ['', [Validators.required, Validators.minLength(this.minLength), Validators.maxLength(this.maxLength)]],
       comment: ['', Validators.maxLength(this.commentMax)],
       CV: ['', Validators.required],

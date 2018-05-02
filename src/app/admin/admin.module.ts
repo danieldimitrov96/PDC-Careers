@@ -1,13 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
-    MatDialogModule, MatInputModule, MatPaginatorModule, MatSortModule
+    MatDialogModule, MatInputModule, MatPaginatorModule, MatSortModule,
 } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+
 import { AdminCoreModule } from './admin-core/admin-core.module';
 import {
     AppliedUsersForAJobComponent,
@@ -19,6 +21,8 @@ import {
     CreateEditContactsAdminComponent,
 } from './create-edit-contacts-admin/create-edit-contacts-admin.component';
 import { DialogComponent } from './dialog/dialog.component';
+import { CreateEditJobComponent } from './job-ads/create-edit-job/create-edit-job.component';
+import { JobAdsComponent } from './job-ads/job-ads.component';
 import { UsersComponent } from './users/users.component';
 
 @NgModule({
@@ -30,9 +34,12 @@ import { UsersComponent } from './users/users.component';
     CreateEditContactsAdminComponent,
     UsersComponent,
     AppliedUsersForAJobComponent,
+    JobAdsComponent,
+    CreateEditJobComponent,
   ],
   imports: [
     RouterModule,
+    ReactiveFormsModule,
     CommonModule,
     AdminCoreModule,
     FormsModule,
@@ -43,6 +50,8 @@ import { UsersComponent } from './users/users.component';
     MatSortModule,
     MatDialogModule,
     MatInputModule,
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot(),
   ],
   entryComponents: [
     DialogComponent,

@@ -67,6 +67,12 @@ export class ContactsAdminComponent {
     this.data.changeContactsDataEditObject(row);
     this.router.navigate(['admin', 'contacts', 'createOrEdit']);
   }
+
+  public applyFilter(filterValue: string): void {
+    const filter = filterValue.trim().toLowerCase();
+    this.dataSource.filter = filter;
+  }
+
   private ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

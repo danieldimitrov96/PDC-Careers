@@ -17,12 +17,14 @@ export class JobComponent {
   public job: JobModel;
   public id: string;
   public userEmail: string;
+  public isAdmin: boolean;
   constructor(private careersService: CareersService,
               private activatedRoute: ActivatedRoute,
               private authService: AuthService,
               private router: Router) { }
 
   public ngOnInit(): void {
+    this.isAdmin = this.authService.getUserInfoBy('isAdmin');
     this.activatedRoute.params
       .subscribe((x) => {
         this.id = x.id;
@@ -48,5 +50,9 @@ export class JobComponent {
 
   public onView(): void {
     this.router.navigate([`/admin/jobs/${this.id}`]);
+  }
+
+  public ngDoCheck(): void {
+    this.isAdmin = this.authService.getUserInfoBy('isAdmin');
   }
 }

@@ -9,7 +9,7 @@
         <ul class="list-inline social-buttons">
           
           <li *ngFor="let socialButton of socialButtons" class="list-inline-item">
-            <a *ngIf="!socialButton.hidden" href="https://www.{{socialButton.name.toLocaleLowerCase()}}.com">
+            <a *ngIf="!socialButton.hidden" href="{{socialButton.link}}">
               <i class="fa fa-{{socialButton.name.toLocaleLowerCase()}}"></i>
             </a>
           </li>
