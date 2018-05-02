@@ -1,7 +1,21 @@
+.container{
+  padding-top: 3%;
+}
+
+th{
+  color:white;
+}
+
+.btn{
+  margin: 5px;
+}
+
 .example-container {
+  margin-top:15px;
   display: flex;
   flex-direction: column;
   min-width: 300px;
+
 }
 
 .example-header {
@@ -14,12 +28,6 @@
   width: 100%;
 }
 
-.jobsTitle {
-  color: #fed136;
-  padding-top: 3%;
-  padding-left: 3%;
-}
-
-.container {
-  padding-top: 3%;
+.mat-table {
+  overflow: auto;
 }
