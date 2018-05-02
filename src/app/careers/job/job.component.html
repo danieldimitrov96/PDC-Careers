@@ -4,7 +4,7 @@
       <mat-card class="jobAd">
         <mat-card-content>
           <mat-card-title>{{job?.title}}</mat-card-title>
-          <p>{{job?.description}}</p>
+          <p [froalaView]="job?.description"></p>
           <mat-card-footer> {{job?.createdAt | date}}</mat-card-footer>
           <mat-card-actions>
             <a style="cursor: pointer;" (click)="onApply()">Apply</a>

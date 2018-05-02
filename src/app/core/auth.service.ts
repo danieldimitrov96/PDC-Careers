@@ -37,7 +37,7 @@ export class AuthService {
     localStorage.removeItem('expiresAt');
   }
 
-  public getUserInfoBy(param: string): string {
+  public getUserInfoBy(param: string): any {
     const token = this.jwtService.tokenGetter();
     if (token) {
       const decoded = this.jwtService.decodeToken(token);

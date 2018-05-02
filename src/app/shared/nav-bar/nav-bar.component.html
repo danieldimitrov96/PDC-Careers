@@ -18,7 +18,7 @@
         <li class="nav-item ">
           <a class="nav-link" [routerLink]="['/contacts']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">Contacts</a>
         </li>
-        <li ngbDropdown  class="nav-item" >
+        <li ngbDropdown  class="nav-item" *ngIf="isAdmin">
           <a ngbDropdownToggle class="nav-link dropdown-toggle">
            Administration
           </a>

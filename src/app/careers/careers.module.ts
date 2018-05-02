@@ -8,6 +8,8 @@ import {
 } from '@angular/material';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { FroalaViewModule } from 'angular-froala-wysiwyg';
+
 import { SharedModule } from '../shared/shared.module';
 import { CareersComponent } from './careers.component';
 import { CareersRoutingModule } from './careers.routing.module';
@@ -33,6 +35,7 @@ import { JobComponent } from './job/job.component';
     MatPaginatorModule,
     MatDialogModule,
     MatButtonModule,
+    FroalaViewModule.forRoot(),
   ],
   declarations: [
     CareersComponent,
