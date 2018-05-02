@@ -1,9 +1,13 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
+import { saveAs } from 'file-saver';
+
 import { AuthService } from '../../core/auth.service';
 import { CareersService } from '../../core/careers.service';
 import { ApplicationAdminServiceService } from '../admin-core/admin-application.service';
+import { DownloadService } from '../admin-core/download.service';
 import { IApplication, IApplicationData } from '../models/IAplication/IApplication';
 import { IAppliedUsers, IJobModelAdmin } from '../models/IJobModelAdmin/IJobModelAdmin';
 
@@ -15,7 +19,7 @@ import { IAppliedUsers, IJobModelAdmin } from '../models/IJobModelAdmin/IJobMode
 export class AppliedUsersForAJobComponent implements OnInit {
   // todo get user by id
 
-  public displayedColumns = ['_id', 'fullName', 'comment', 'createdAt'];
+  public displayedColumns = ['_id', 'fullName', 'comment', 'createdAt', 'download'];
   public dataSource: MatTableDataSource < IApplication > ;
 
   @ViewChild(MatPaginator) public paginator: MatPaginator;
@@ -30,7 +34,8 @@ export class AppliedUsersForAJobComponent implements OnInit {
     private applicationService: ApplicationAdminServiceService,
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,
-    private router: Router) {}
+    private router: Router,
+    private donwloadService: DownloadService) {}
 
   public ngOnInit(): void {
     this.activatedRoute.params
@@ -51,4 +56,21 @@ export class AppliedUsersForAJobComponent implements OnInit {
     const filter = filterValue.trim().toLowerCase();
     this.dataSource.filter = filter;
   }
+
+  public onCvDownload(cv: string): void {
+    const splittedCV = cv.split('/');
+    const filename = splittedCV[splittedCV.length - 1];
+    this.donwloadService.getFile(filename).subscribe((response: HttpResponse<Blob>) => {
+      saveAs(response.body, filename);
+    });
+  }
+
+  public onClDownload(cLetter: string): void {
+    const splittedCL = cLetter.split('/');
+    const filename = splittedCL[splittedCL.length - 1];
+    this.donwloadService.getFile(filename).subscribe((response: HttpResponse<Blob>) => {
+      saveAs(response.body, filename);
+    });
+  }
+
 }

@@ -1,8 +1,8 @@
 <div class="container">
   <h2 class="containerTitle">Open positions</h2>
   <div class="row" *ngIf="allJobs?.length !== 0; else nodata">
-    <div class="col-md-9 allCareers">
-      <div class="singleJob col-md-9" *ngFor="let job of allJobsFiltered">
+    <div class="col-md-8 allCareers">
+      <div class="singleJob col-md-8" *ngFor="let job of allJobsFiltered">
         <mat-card class="jobCard">
           <mat-card-content>
             <a class="jobTitle" [routerLink]="['/careers', job.id]" id="{{job.id}}">{{job.title}}</a>
@@ -12,7 +12,7 @@
       </div>
     </div>
 
-    <div class="col-md-3 mx-auto filtering">
+    <div align="center" class="col-md-3 filtering">
         <h3 class='filterBy'>Filter by</h3>
         <mat-form-field class="searchBox">
           <input matInput placeholder="Search" name="searchText" (input)="search()" value="" [(ngModel)]="searchText">

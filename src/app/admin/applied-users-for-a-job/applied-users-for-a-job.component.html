@@ -36,6 +36,14 @@
       <mat-cell *matCellDef="let row"> {{row.createdAt | date}}</mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="download">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Download </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+      <div (click)="onCvDownload(row.CV, row.user)" class="btn btn-secondary">CV</div>
+      <div (click)="onClDownload(row.CoverLetter, row.user)" class="btn btn-secondary">Cover letter</div>
+    </mat-cell>
+    </ng-container>
+
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;">
