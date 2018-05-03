@@ -16,7 +16,6 @@ import { JobModel } from '../../models/careers/JobModel';
 export class JobComponent {
   public job: JobModel;
   public id: string;
-  public userEmail: string;
   public isAdmin: boolean;
   constructor(private careersService: CareersService,
               private activatedRoute: ActivatedRoute,
@@ -33,19 +32,11 @@ export class JobComponent {
       .getCurrentJob(this.id)
       .subscribe((data) => {
         this.job = data;
-        // console.log(this.job);
       });
-    this.userEmail = this.authService.getUserInfoBy('email');
-    // console.log(this.id);
   }
 
   public onApply(): void {
-    if (this.userEmail) {
       this.router.navigate([`/careers/${this.id}/apply`]);
-      // [routerLink]="['/careers', id, 'apply' ]"
-    } else {
-      this.router.navigate(['/auth/login']);
-    }
   }
 
   public onView(): void {

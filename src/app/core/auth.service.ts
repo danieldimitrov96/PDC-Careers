@@ -28,6 +28,10 @@ export class AuthService {
     return !!token && !this.jwtService.isTokenExpired(token);
   }
 
+  public isAdmin(): boolean {
+    return this.getUserInfoBy('isAdmin');
+  }
+
   public isLoggedIn(): boolean {
     return moment().isBefore(this.getExpiration());
   }
