@@ -4,5 +4,11 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  homePageText:
+  `Lorem ipsum dolor sit amet consectetur adipisicing elit.
+   Dignissimos, illum. Nihil, dolores! Placeat mollitia
+   neque minima molestiae deserunt quisquam ut quia aliquam,
+   assumenda magnam amet officia! Provident, ipsum doloremque. Eius.`,
+  homePageFB: 'TelerikAcademy',
 };
