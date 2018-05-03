@@ -1,8 +1,3 @@
-.title {
-  color: #fed136;
-  padding-bottom: 2%;
-}
-
 .fields {
   padding-top: 5%;
 }
@@ -12,6 +7,25 @@
   font-size: 1.2em;
 }
 
-.btn {
-    margin-top: 20px;
+
+
+.container{
+  padding-top: 3%;
+}
+
+span{
+  padding-bottom: 5px;
+}
+
+.btn{
+  margin: 10px;
+}
+
+.padding{
+  padding: 10px;
+  padding-top:30px;
+}
+
+input.ng-invalid.ng-touched ,select.ng-invalid.ng-touched{
+border: 1px solid red;
 }
