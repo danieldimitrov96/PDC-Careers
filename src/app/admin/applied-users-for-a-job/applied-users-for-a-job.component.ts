@@ -17,7 +17,6 @@ import { IAppliedUsers, IJobModelAdmin } from '../models/IJobModelAdmin/IJobMode
   styleUrls: ['./applied-users-for-a-job.component.css'],
 })
 export class AppliedUsersForAJobComponent implements OnInit {
-  // todo get user by id
 
   public displayedColumns = ['_id', 'fullName', 'comment', 'createdAt', 'download'];
   public dataSource: MatTableDataSource < IApplication > ;
@@ -58,18 +57,14 @@ export class AppliedUsersForAJobComponent implements OnInit {
   }
 
   public onCvDownload(cv: string): void {
-    const splittedCV = cv.split('/');
-    const filename = splittedCV[splittedCV.length - 1];
-    this.donwloadService.getFile(filename).subscribe((response: HttpResponse<Blob>) => {
-      saveAs(response.body, filename);
+    this.donwloadService.getFile(cv).subscribe((response: HttpResponse<Blob>) => {
+      saveAs(response.body, cv);
     });
   }
 
   public onClDownload(cLetter: string): void {
-    const splittedCL = cLetter.split('/');
-    const filename = splittedCL[splittedCL.length - 1];
-    this.donwloadService.getFile(filename).subscribe((response: HttpResponse<Blob>) => {
-      saveAs(response.body, filename);
+    this.donwloadService.getFile(cLetter).subscribe((response: HttpResponse<Blob>) => {
+      saveAs(response.body, cLetter);
     });
   }
 
