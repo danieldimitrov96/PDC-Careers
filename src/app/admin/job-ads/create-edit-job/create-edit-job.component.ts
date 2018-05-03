@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
+import { AppConfig } from '../../../config/app.config';
 import { JobsService } from '../../admin-core/jobs.service';
 import { JobCategoryModel } from '../../models/Jobs/JobCategoryModel';
 import { JobStatus } from '../../models/Jobs/JobStatus.enum';
@@ -32,7 +33,8 @@ export class CreateEditJobComponent implements OnInit {
   constructor(private fb: FormBuilder, private jobsService: JobsService,
               private activatedRoute: ActivatedRoute,
               private location: Location,
-              private toastr: ToastrService) {
+              private toastr: ToastrService,
+              private appConfig: AppConfig) {
     this.jobId = this.activatedRoute.snapshot.params.id || this.createJobId;
     this.createForm();
   }
@@ -69,8 +71,7 @@ export class CreateEditJobComponent implements OnInit {
           this.toastr.success('Success');
           setTimeout(() => {
             this.location.back();
-          // tslint:disable-next-line:no-magic-numbers
-          },         2000);
+          },         this.appConfig.timeOutAnimation);
       },
       (err: HttpErrorResponse) => {
         if (err.status === this.foundStatus) {

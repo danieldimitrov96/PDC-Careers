@@ -1,35 +1,40 @@
 .jobAd {
-    width: 420px;
+  width: 420px;
 }
 
-.container{
-    padding: 3%;
+.container {
+  padding: 3%;
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  flex: 1 100%;
 }
 
-mat-card-actions{
-    padding: 10px;
+mat-card {
+  flex: 1 100%;
 }
 
-mat-card-footer{
-    padding-left: 10px;
+mat-card-actions {
+  padding: 10px;
 }
 
-
-mat-card-actions a{
-    cursor: pointer;
+mat-card-footer {
+  padding-left: 10px;
 }
 
-mat-card-content p{
-    font-size: 18px;
-
+mat-card-actions a {
+  cursor: pointer;
 }
 
-
-mat-card-title p{
-    font-size: 23px;
-    font-weight: bold;
+mat-card-content p {
+  font-size: 18px;
 }
 
+mat-card-title p {
+  font-size: 23px;
+  font-weight: bold;
+  color: #fed136;
+}
 
 /* .float-rigth{
     width: 100%;

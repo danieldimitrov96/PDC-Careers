@@ -17,16 +17,16 @@ import { IButtonAdmin } from '../models/IButtonAdmin/IButtonAdmin';
 })
 export class CreateEditButtonsComponent implements OnInit, OnDestroy {
 
+  public loading = false;
   public editObj: IButtonAdmin;
   private duplicatedStatus: number = 302;
   private templateRowObject = new ButtonAdmin();
-
   constructor(private httpClient: HttpClient,
-    private appConfig: AppConfig,
-    private buttonsService: ButtonsService,
-    private router: Router,
-    private data: DataService,
-    private toastr: ToastrService) {}
+              private appConfig: AppConfig,
+              private buttonsService: ButtonsService,
+              private router: Router,
+              private data: DataService,
+              private toastr: ToastrService) {}
 
   public ngOnInit(): void {
     this.data.currentEditObject.subscribe((obj) => this.editObj = obj);
@@ -35,7 +35,7 @@ export class CreateEditButtonsComponent implements OnInit, OnDestroy {
     this.data.changeDataEditObject(this.templateRowObject);
   }
   public onSubmit(form: NgForm): void {
-    // TODO HANDLE ERROR TOASTR
+    this.loading = true;
     if (!form.value.hidden) {
       form.value.hidden = false;
     }
@@ -45,7 +45,9 @@ export class CreateEditButtonsComponent implements OnInit, OnDestroy {
       this.buttonsService.editButton(form.value, form.value._id).subscribe(
         (res) => {
           this.toastr.success('Edited button', 'Success!');
-          this.router.navigate(['admin', 'buttons']);
+          setTimeout(() => {
+            this.router.navigate(['admin', 'buttons']);
+          },         this.appConfig.timeOutAnimation);
         },
         (err: HttpErrorResponse) => {
           if (err.status === this.duplicatedStatus && form.value.name) {
@@ -56,7 +58,9 @@ export class CreateEditButtonsComponent implements OnInit, OnDestroy {
       this.buttonsService.createButton(form.value).subscribe(
         (res) => {
           this.toastr.success('Added button', 'Success!');
-          this.router.navigate(['admin', 'buttons']);
+          setTimeout(() => {
+            this.router.navigate(['admin', 'buttons']);
+          },         this.appConfig.timeOutAnimation);
         },
         (err: HttpErrorResponse) => {
           if (err.status === this.duplicatedStatus && form.value.name) {
@@ -64,6 +68,9 @@ export class CreateEditButtonsComponent implements OnInit, OnDestroy {
           }
         });
     }
+  }
+  public onBack(): void {
+    this.router.navigate(['admin', 'buttons']);
   }
 
 }

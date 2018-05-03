@@ -16,7 +16,7 @@ import { IContactAdmin } from '../models/IContactsAdmin/IContactsAdmin';
   styleUrls: ['./create-edit-contacts-admin.component.css']
 })
 export class CreateEditContactsAdminComponent implements OnInit {
-
+  public loading = false;
   public editObj: IContactAdmin;
   private duplicatedStatus: number = 302;
   private templateRowObject = new ContactAdmin();
@@ -35,6 +35,7 @@ export class CreateEditContactsAdminComponent implements OnInit {
     this.data.changeContactsDataEditObject(this.templateRowObject);
   }
   public onSubmit(form: NgForm): void {
+    this.loading = true;
     if (!form.value.isPrimary) {
       form.value.isPrimary = false;
     }
@@ -44,7 +45,9 @@ export class CreateEditContactsAdminComponent implements OnInit {
       this.contactService.editContact(form.value, form.value._id).subscribe(
         (res) => {
           this.toastr.success('Edited button', 'Success!');
+          setTimeout(() => {
           this.router.navigate(['admin', 'contacts']);
+          },         this.appConfig.timeOutAnimation);
         },
         (err: HttpErrorResponse) => {
           if (err.status === this.duplicatedStatus && form.value.name) {
@@ -55,7 +58,9 @@ export class CreateEditContactsAdminComponent implements OnInit {
       this.contactService.createContact(form.value).subscribe(
         (res) => {
           this.toastr.success('Added button', 'Success!');
-          this.router.navigate(['admin', 'contacts']);
+          setTimeout(() => {
+            this.router.navigate(['admin', 'contacts']);
+            },       this.appConfig.timeOutAnimation);
         },
         (err: HttpErrorResponse) => {
           if (err.status === this.duplicatedStatus && form.value.name) {
@@ -65,4 +70,8 @@ export class CreateEditContactsAdminComponent implements OnInit {
     }
   }
 
+  public onBack(): void {
+    this.router.navigate(['admin', 'contacts']);
+
+  }
 }
