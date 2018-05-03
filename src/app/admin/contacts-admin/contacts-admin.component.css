@@ -11,7 +11,6 @@ th{
 }
 
 .example-container {
-    margin-top:15px;
     display: flex;
     flex-direction: column;
     min-width: 300px;
