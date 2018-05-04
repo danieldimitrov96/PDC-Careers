@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
 
   public homeText = environment.homePageText;
   public fbPage = environment.homePageFB;
-  public background = './../../assets/back-ground.jpeg';
+  public background = environment.homeBackgroundImage;
   public offset = 700;
   public actionButtons: IButton[] = [];
   @ViewChild('iframe') public el: ElementRef;
