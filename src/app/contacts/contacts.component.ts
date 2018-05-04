@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ContactsService } from '../core/contacts.service';
 import { IContacts } from '../models/contacts/IContacts';
+import { IPrimaryAddress } from '../models/contacts/IPrimaryAddress';
 
 @Component({
   selector: 'app-contacts',
@@ -17,7 +18,7 @@ export class ContactsComponent implements OnInit {
   public googleMapsURL: string;
 
   public contacts: IContacts;
-  public primeryRootContact: object;
+  public primeryRootContact: IPrimaryAddress;
 
   constructor(private contactService: ContactsService,
               private http: HttpClient) { }
@@ -27,7 +28,10 @@ export class ContactsComponent implements OnInit {
       if (data) {
         this.contacts = data;
         this.primeryRootContact = data.firstPrimary;
-        this.searchCity = data.firstPrimary.address;
+        if (!this.primeryRootContact) {
+          this.primeryRootContact = {address: 'Sofia'};
+        }
+        this.searchCity = this.primeryRootContact.address;
         this.searchCity = this.searchCity.replace(/ /g, '+');
         this.googleMapsURL = `https://maps.googleapis.com/maps/api/geocode/json?address=${this.searchCity}&key=${this.googleAPIkey}`;
         this.http.get(this.googleMapsURL).subscribe((x: any) => {

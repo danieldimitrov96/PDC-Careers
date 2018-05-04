@@ -30,6 +30,9 @@ export class CreateEditButtonsComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.data.currentEditObject.subscribe((obj) => this.editObj = obj);
+    if (this.editObj.type === '') {
+      this.editObj.type = 'Social';
+    }
   }
   public ngOnDestroy(): void {
     this.data.changeDataEditObject(this.templateRowObject);
