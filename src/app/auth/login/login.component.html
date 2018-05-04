@@ -15,7 +15,7 @@
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
                         <input type="email" class="form-control" id="email" name="email" #loginEmail="ngModel"
-                        ngModel email pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+                        [(ngModel)]="localS.email" email pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
                         placeholder="email@pdc.com" required>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                     <label class="sr-only" for="password">Password</label>
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
-                        <input type="password" name="password" class="form-control" id="password" ngModel
+                        <input type="password" name="password" class="form-control" id="password" [(ngModel)]="localS.password"
                                placeholder="Password" required>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
             <div class="col-md-6" style="padding-top: .35rem">
                 <div class="form-check mb-2 mr-sm-2 mb-sm-0">
                     <label class="form-check-label">
-                        <input class="form-check-input" name="remember"
+                        <input [(ngModel)]="rememberMe" class="form-check-input" name="remember"
                                type="checkbox" >
                         <span style="padding-bottom: .15rem">Remember me</span>
                     </label>
