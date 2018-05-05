@@ -2,20 +2,15 @@
   <h2 class="containerTitle">Open positions</h2>
   <div class="row" *ngIf="allJobs?.length !== 0; else nodata">
     <div class="col-md-8 allCareers">
-      <!-- <div class="singleJob col-md-8"> -->
-      <mat-nav-list>
-        <div *ngFor="let job of allJobsFiltered">
-          <app-job-title [job]="job" *ngIf="authService.isAdmin() || job.status === 'Active'"></app-job-title>
-        </div>
-      </mat-nav-list>
-      <mat-paginator *ngIf="allJobsFiltered?.length > 5" [length]="length" [pageSize]="pageSize" [pageSizeOptions]="[10, 20, 50]" (page)="onChangePage($event)" [showFirstLastButtons]="true"></mat-paginator>
-      <!-- <mat-card class="jobCard">
-          <mat-card-content>
-            <a class="jobTitle" [routerLink]="['/careers', job.id]" id="{{job.id}}">{{job.title}}</a>
-          </mat-card-content>
-        </mat-card>
-        <hr> -->
-      <!-- </div> -->
+      <div class="col-md-8">
+        <mat-nav-list>
+          <div *ngFor="let job of allJobsFiltered">
+            <app-job-title [job]="job"></app-job-title>
+          </div>
+        </mat-nav-list>
+        <mat-paginator *ngIf="length > 10" [length]="length" [pageSize]="pageSize" [pageSizeOptions]="[10, 20, 50]" (page)="onChangePage($event)"
+          [showFirstLastButtons]="true"></mat-paginator>
+      </div>
     </div>
 
     <div align="center" class="col-md-3 filtering">
@@ -44,6 +39,5 @@
 
   <ng-template #nodata>
     <h3>There are no open positions - please try later</h3>
-    <!-- <img src="./../../assets/no_jobs.jpeg"> -->
   </ng-template>
 </div>

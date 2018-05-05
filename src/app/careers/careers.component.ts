@@ -22,7 +22,6 @@ import { JobComponent } from './job/job.component';
 export class CareersComponent implements OnInit {
   public allJobs: JobModel[];
   public allJobsFiltered: JobModel[];
-  // public paginatedJobs: JobModel[];
   public allCategories: CategoryModel[];
   public length: number;
   public pageSize = 10;
@@ -41,7 +40,6 @@ export class CareersComponent implements OnInit {
         this.allJobsFiltered = res.allJobsAscending;
         this.allCategories = res.allCategories;
         this.length = this.allJobs.length;
-        console.log(this.length);
         this.onChangePage({
           pageIndex: 0,
           length: this.length,
@@ -66,33 +64,23 @@ export class CareersComponent implements OnInit {
       this.careersService.filterByCategory(this.allJobsFiltered, this.allJobs, this.category, this.searchText, this.dateSelected);
   }
 
-  public clearFilter(): void {
+  public clearFilter(event: PageEvent): void {
     this.searchText = '';
     this.date = '';
     this.category = '';
     this.allJobsFiltered = this.allJobs.slice();
+    this.onChangePage({
+      pageIndex: 0,
+      length: this.length,
+      pageSize: this.pageSize,
+    });
   }
 
   public onChangePage(event: PageEvent): void {
-    console.log(this.length);
-    const copy = this.allJobs.slice();
     this.allJobsFiltered = this.allJobs.slice(
       event.pageIndex * event.pageSize,
       event.pageIndex * event.pageSize + event.pageSize,
     );
   }
-  // public openDialog(e: HTMLElement): void {
-  //   console.log(e);
-  //   console.log(e.getAttribute('id'));
-  //   const dialogRef = this.dialog.open(JobComponent, {
-  //     height: '550px',
-  //     data: {
-  //       dataKey: '123',
-  //     },
-  //   });
 
-  //   dialogRef.afterClosed().subscribe((result) => {
-  //     console.log(`Dialog result: ${result}`);
-  //   });
-  // }
 }
