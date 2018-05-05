@@ -28,9 +28,5 @@ export class HomeComponent implements OnInit {
         }
       });
     });
-    setTimeout(() => {
-      console.log('You wonder what this error is about? Ask Mark Zuckerberg! Or check here: https://goo.gl/xMfKzT');
-    // tslint:disable-next-line:no-magic-numbers
-    },         2000);
   }
 }

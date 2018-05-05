@@ -26,7 +26,7 @@ export class CreateEditButtonsComponent implements OnInit, OnDestroy {
               private buttonsService: ButtonsService,
               private router: Router,
               private data: DataService,
-              private toastr: ToastrService) {}
+              private toastr: ToastrService) { }
 
   public ngOnInit(): void {
     this.data.currentEditObject.subscribe((obj) => this.editObj = obj);

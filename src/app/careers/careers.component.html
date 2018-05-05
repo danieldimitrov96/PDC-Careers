@@ -2,28 +2,29 @@
   <h2 class="containerTitle">Open positions</h2>
   <div class="row" *ngIf="allJobs?.length !== 0; else nodata">
     <div class="col-md-8 allCareers">
-      <div class="singleJob col-md-8" *ngFor="let job of allJobsFiltered">
-        <mat-card class="jobCard">
-          <mat-card-content>
-            <a class="jobTitle" [routerLink]="['/careers', job.id]" id="{{job.id}}">{{job.title}}</a>
-          </mat-card-content>
-        </mat-card>
-        <hr>
+      <div class="col-md-8">
+        <mat-nav-list>
+          <div *ngFor="let job of allJobsFiltered">
+            <app-job-title [job]="job"></app-job-title>
+          </div>
+        </mat-nav-list>
+        <mat-paginator *ngIf="length > 10" [length]="length" [pageSize]="pageSize" [pageSizeOptions]="[10, 20, 50]" (page)="onChangePage($event)"
+          [showFirstLastButtons]="true"></mat-paginator>
       </div>
     </div>
 
     <div align="center" class="col-md-3 filtering">
-        <h3 class='filterBy'>Filter by</h3>
-        <mat-form-field class="searchBox">
-          <input matInput placeholder="Search" name="searchText" (input)="search()" value="" [(ngModel)]="searchText">
-        </mat-form-field>
-        <mat-form-field>
-          <mat-select placeholder="Select Division" (change)="filterByCategory()" [(ngModel)]="category" name="category">
-            <mat-option *ngFor="let cat of allCategories" [value]="cat.id">
-              {{cat.type}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+      <h3 class='filterBy'>Filter by</h3>
+      <mat-form-field class="searchBox">
+        <input matInput placeholder="Search" name="searchText" (input)="search()" value="" [(ngModel)]="searchText">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Select Division" (change)="filterByCategory()" [(ngModel)]="category" name="category">
+          <mat-option *ngFor="let cat of allCategories" [value]="cat.id">
+            {{cat.type}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
       <mat-form-field>
         <input matInput [matDatepicker]="picker" placeholder="Select date" (dateInput)="dateChanged($event)" (dateChange)="dateChanged($event)"
           name="date" [(ngModel)]="date">
@@ -38,6 +39,5 @@
 
   <ng-template #nodata>
     <h3>There are no open positions - please try later</h3>
-    <!-- <img src="./../../assets/no_jobs.jpeg"> -->
   </ng-template>
 </div>

@@ -1,33 +1,31 @@
-<div class="container">
-  <h2 align="center" class="containerTitle">Create/Edit Job</h2>
-  <div class="col-md-6 mx-auto">
-
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="title">Title</label>
-        <input type="text" class="form-control" id="title" placeholder="Job Title" formControlName="title">
-      </div>
-      <div class="form-group">
-        <label for="description">Description</label>
-        <textarea [froalaEditor] type="text" class="form-control" id="description" placeholder="Job Description" formControlName="description"
-          style="resize: none"></textarea>
-      </div>
-      <div class="form-group">
-        <label for="category">Category</label>
-        <select class="form-control" formControlName="category" id="category">
-          <option *ngFor="let cat of allCategories" [ngValue]="cat.id">{{cat.type}}</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="status">Status</label>
-        <select class="form-control" formControlName="status" id="status">
-          <option *ngFor="let status of allStatuses" [ngValue]="status">{{status}}</option>
-        </select>
-      </div>
-      <button type="submit" [disabled]="form.invalid || loading" class="btn btn-success float-right">Submit
-        <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i>
-      </button>
-    </form>
-    <button type="button" (click)="onBack()" class="btn btn-secondary">Back</button>
-  </div>
+<!-- <div class="container"> -->
+<div class="container fields col-md-6">
+  <h2 class="title">Create/Edit</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" placeholder="Job Title" formControlName="title">
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea [froalaEditor]= 'options'type="text" class="form-control" id="description" placeholder="Job Description"
+        formControlName="description" style="resize: none"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="category">Category</label>
+      <select class="form-control" formControlName="category" id="category">
+        <option *ngFor="let cat of allCategories" [ngValue]="cat.id">{{cat.type}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="status">Status</label>
+      <select class="form-control" formControlName="status" id="status">
+        <option *ngFor="let status of allStatuses" [ngValue]="status">{{status}}</option>
+      </select>
+    </div>
+    <button type="submit" [disabled]="form.invalid || loading" class="btn btn-success">Submit
+      <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i>
+    </button>
+    <button type="button" (click)="onBack()" class="btn btn-danger">Back</button>
+  </form>
 </div>
