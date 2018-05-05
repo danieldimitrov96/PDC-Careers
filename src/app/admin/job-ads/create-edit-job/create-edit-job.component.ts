@@ -23,11 +23,26 @@ export class CreateEditJobComponent implements OnInit {
   public createJobId: string = 'create';
   public allStatuses = Object.keys(JobStatus);
   public currentJob = new SingleJobModel();
+  public options = {
+    charCounterMax: 16384,
+    toolbarButtonsXS: [
+      'bold',
+      'italic',
+      'strikeThrough',
+      'subscript',
+      'superscript',
+      'align',
+      '|',
+      'undo',
+      'redo',
+    ],
+  };
   private minLength = 4;
   private maxTitleLength = 256;
   private maxDescrLength = 16384;
   private foundStatus = 302;
   private errorStatus = 403;
+  private toastrTimeoutInMs = 2000;
 
   constructor(private fb: FormBuilder, private jobsService: JobsService,
               private activatedRoute: ActivatedRoute,
@@ -38,7 +53,6 @@ export class CreateEditJobComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    // tslint:disable-next-line:no-magic-numbers
     this.allStatuses = this.allStatuses.slice(this.allStatuses.length / 2);
     this.jobsService.getCurrentJob(this.jobId).subscribe((data) => {
       this.currentJob = data;
@@ -69,8 +83,7 @@ export class CreateEditJobComponent implements OnInit {
           this.toastr.success('Success');
           setTimeout(() => {
             this.location.back();
-          // tslint:disable-next-line:no-magic-numbers
-          },         2000);
+          },         this.toastrTimeoutInMs);
       },
       (err: HttpErrorResponse) => {
         if (err.status === this.foundStatus) {
