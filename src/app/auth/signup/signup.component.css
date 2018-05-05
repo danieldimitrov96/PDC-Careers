@@ -1,3 +1,15 @@
 .container {
     padding-top: 3%;
 }
+
+.form-control-feedback {
+    padding-left: 5%;
+}
+
+.btn {
+    margin-left: 7%;
+}
+
+.icons {
+    color: #fed136;
+}

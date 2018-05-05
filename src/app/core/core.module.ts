@@ -6,6 +6,7 @@ import { AuthService } from './auth.service';
 import { CareersService } from './careers.service';
 import { ContactsService } from './contacts.service';
 import { HomeButtonsService } from './home-buttons.service';
+import { StorageService } from './storage.service';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { HomeButtonsService } from './home-buttons.service';
     HomeButtonsService,
     AuthGuardService,
     RoleGuardService,
+    StorageService,
     ],
 })
 export class CoreModule { }

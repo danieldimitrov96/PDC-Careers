@@ -20,7 +20,7 @@ import { SharedModule } from './shared/shared.module';
 
 /* tslint:disable */
 export function tokenGetter() {
-  return localStorage.getItem('token');
+  return localStorage.getItem('token') || sessionStorage.getItem('token');
 }
 /* tslint:enable */
 

@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 import { AuthService } from '../../core/auth.service';
@@ -17,12 +18,13 @@ export class SignupComponent {
   public userEmail: string;
   private foundStatus: number = 302;
 
-  constructor(private authService: AuthService, private toastr: ToastrService) { }
+  constructor(private authService: AuthService, private toastr: ToastrService, private route: ActivatedRoute) { }
 
   public onSignUp(form: NgForm, route: string): void {
     this.signUpForm = form.value;
     this.userEmail = this.signUpForm.email;
-    this.authService.loginOrSignup(this.signUpForm, route).subscribe(
+    const returnUrl = this.route.snapshot.queryParams.returnUrl;
+    this.authService.loginOrSignup(this.signUpForm, route, returnUrl).subscribe(
       (res) => {
         this.toastr.success(`${this.signUpForm.email} registered successfully!`);
       },

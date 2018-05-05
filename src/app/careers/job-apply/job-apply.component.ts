@@ -3,10 +3,11 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RequestOptions } from '@angular/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs/Observable';
 
+import { AppConfig } from '../../config/app.config';
 import { CareersService } from '../../core/careers.service';
 import { JobModel } from '../../models/careers/JobModel';
 
@@ -31,7 +32,9 @@ export class JobApplyComponent implements OnInit {
   constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute,
               private careersService: CareersService,
               private location: Location,
-              private toastr: ToastrService) {
+              private toastr: ToastrService,
+              private appConfig: AppConfig,
+              private router: Router) {
     this.createForm();
   }
   public ngOnInit(): void {
@@ -51,7 +54,7 @@ export class JobApplyComponent implements OnInit {
       lastName: ['', [Validators.required, Validators.minLength(this.minLength), Validators.maxLength(this.maxLength)]],
       comment: ['', Validators.maxLength(this.commentMax)],
       CV: ['', Validators.required],
-      CoverLetter: ['', Validators.required],
+      CoverLetter: [''],
     });
   }
 
@@ -81,12 +84,12 @@ export class JobApplyComponent implements OnInit {
 
     setTimeout(() => {
       this.loading = false;
-      // tslint:disable-next-line:no-magic-numbers
-    },         1000);
+    },         this.appConfig.timeOutAnimation);
   }
 
   public onBack(): void {
-    this.location.back();
+    const idParam = this.activatedRoute.snapshot.params.id;
+    this.router.navigate(['careers', idParam]);
   }
 
   private validFileExtension(fileName: string): boolean {

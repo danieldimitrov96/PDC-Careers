@@ -1,6 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRouteSnapshot, Params, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 import * as moment from 'moment';
@@ -11,15 +11,20 @@ import { Observable } from 'rxjs/Observable';
 import { AppConfig } from '../config/app.config';
 import { User } from '../models/user/user';
 import { UserSignupModel } from '../models/user/userSignUpModel';
+import { StorageService } from './storage.service';
 
 @Injectable()
 export class AuthService {
 
-  constructor(private appConfig: AppConfig, private http: HttpClient, private jwtService: JwtHelperService, private router: Router) { }
+  constructor(private appConfig: AppConfig,
+              private http: HttpClient,
+              private jwtService: JwtHelperService,
+              private router: Router,
+              private storageService: StorageService) { }
 
-  public loginOrSignup(user: User, route: string): Observable<UserSignupModel> {
+  public loginOrSignup(user: User, route: string, returnUrl: Params): Observable<UserSignupModel> {
     return this.http.post<UserSignupModel>(`${this.appConfig.apiUrl}${route}`, user)
-      .do((res) => this.setSession(res))
+      .do((res) => this.setSession(res, user.remember, returnUrl))
       .shareReplay();
   }
 
@@ -37,8 +42,7 @@ export class AuthService {
   }
 
   public logout(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('expiresAt');
+    this.storageService.removeFromStorage();
     this.router.navigate(['/']);
   }
 
@@ -51,17 +55,21 @@ export class AuthService {
     return null;
   }
 
-  private setSession(authResponse: UserSignupModel): void {
+  private setSession(authResponse: UserSignupModel, remember: boolean, returnUrl: Params): void {
     const expiresAt = moment().add(authResponse.expiresIn, 'second');
+    const expiresAtString = JSON.stringify(expiresAt.valueOf());
     if (!authResponse.message) {
-      localStorage.setItem('token', authResponse.token);
-      localStorage.setItem('expiresAt', JSON.stringify(expiresAt.valueOf()));
-      this.router.navigate(['']);
+      this.storageService.saveToStorage(remember, authResponse.token, expiresAtString);
+      if (returnUrl) {
+        this.router.navigate([returnUrl]);
+      } else {
+        this.router.navigate(['']);
+      }
     }
   }
 
   private getExpiration(): moment.MomentInput {
-    const expirationTimer = localStorage.getItem('expiresAt');
+    const expirationTimer = this.storageService.getFromStorage('expiresAt');
     const expiresAt = JSON.parse(expirationTimer);
     return moment(expiresAt);
   }
