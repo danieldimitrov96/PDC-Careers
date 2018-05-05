@@ -15,5 +15,5 @@ export const environment = {
 timeline&width=398&height=348&small_header=
 true&adapt_container_width
 =true&hide_cover=false&show_facepile=false&appId`,
-  homeBackgroundImage: './../../assets/back-ground.jpeg',
+  homeBackgroundImage: './../assets/back-ground.jpeg',
 };
