@@ -42,7 +42,6 @@ export class AppliedUsersForAJobComponent implements OnInit {
         this.id = x.id;
       });
     this.applicationService.getApplicationWithJobId(this.id).subscribe((data: IApplicationData) => {
-      console.log(data);
       this.dataSource = new MatTableDataSource(data.context);
       this.jobTitle = data.title;
       setTimeout(() => {

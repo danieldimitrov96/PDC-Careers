@@ -7,21 +7,3 @@
 @import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
 
 @import './assets/theme.css';
-
-html {
-  height: 100%;
-}
-body {
-  overflow-x: hidden;
-  font-family: 'Roboto Slab', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background-color: #111111;
-  color: #bababa;
-  padding-top: 100px;
-  padding-bottom: 150px;
-  min-height: 100%;
-  position: relative;
-}
-
-.containerTitle {
-  color: #fed136;
-}
