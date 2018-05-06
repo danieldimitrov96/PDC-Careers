@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-3"></div>
       <div class="col-md-6">
-        <h2>Sign Up</h2>
+        <h2 class='title'>Sign Up</h2>
         <hr>
       </div>
     </div>
@@ -16,7 +16,8 @@
             <div class="input-group-addon icons" style="width: 2.6rem">
               <i class="fa fa-at"></i>
             </div>
-            <input type="email" class="form-control" id="email" name="email" #signUpEmail="ngModel" ngModel email pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+            <input (focus)="removeErrorIfTaken(f)" (focusout)="checkEmail(signUpEmail.value, f)" type="email" class="form-control" id="email"
+              name="email" #signUpEmail="ngModel" ngModel email pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
               placeholder="email@pdc.com" required>
           </div>
         </div>
@@ -41,14 +42,21 @@
             <div class="input-group-addon icons" style="width: 2.6rem">
               <i class="fa fa-key"></i>
             </div>
-            <input type="password" name="confirmPass" class="form-control" id="confirmPass" ngModel placeholder="Confirm Password"
-              required #confirm="ngModel">
+            <input type="password" name="confirmPass" class="form-control" id="confirmPass" ngModel placeholder="Confirm Password" required
+              #confirm="ngModel">
           </div>
         </div>
         <div class="col-md-12" *ngIf="!signUpEmail.pattern && signUpEmail.errors && signUpEmail.dirty && signUpEmail.touched">
           <div class="form-control-feedback">
             <span class="text-danger align-middle">
               Invalid email address
+            </span>
+          </div>
+        </div>
+        <div class="col-md-12" *ngIf="takenEmail">
+          <div class="form-control-feedback">
+            <span class="text-danger align-middle">
+              This email address is already used
             </span>
           </div>
         </div>
@@ -60,12 +68,12 @@
           </div>
         </div>
         <div class="col-md-12" *ngIf="passwordsMatch(f) && confirm.dirty">
-            <div class="form-control-feedback">
-              <span class="text-danger align-middle">
-                Passwords don't match
-              </span>
-            </div>
+          <div class="form-control-feedback">
+            <span class="text-danger align-middle">
+              Passwords don't match
+            </span>
           </div>
+        </div>
       </div>
     </div>
     <div class="row" style="padding-top: 1rem">

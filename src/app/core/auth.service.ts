@@ -22,6 +22,10 @@ export class AuthService {
               private router: Router,
               private storageService: StorageService) { }
 
+  public checkEmail(email: string): Observable<object> {
+    return this.http.get(`${this.appConfig.apiUrl}/checkEmail/${email}`); // .map((res) => res.json());
+  }
+
   public loginOrSignup(user: User, route: string, returnUrl: Params): Observable<UserSignupModel> {
     return this.http.post<UserSignupModel>(`${this.appConfig.apiUrl}${route}`, user)
       .do((res) => this.setSession(res, user.remember, returnUrl))

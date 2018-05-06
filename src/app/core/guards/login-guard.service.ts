@@ -5,23 +5,16 @@ import {
 import { AuthService } from '../auth.service';
 
 @Injectable()
-export class AuthGuardService implements CanActivate {
-  private extras: NavigationExtras;
+export class LoginGuardService implements CanActivate {
 
   constructor(private authService: AuthService, private router: Router) { }
   public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    const isAuth = this.authService.isAuth();
-    const returnUrl: string = state.url;
-    // console.log(returnUrl);
+    const isLoggedIn = this.authService.isLoggedIn();
 
-    this.extras = {
-      queryParams: { returnUrl },
-    };
-
-    if (isAuth) {
-      return true;
+    if (isLoggedIn) {
+      this.router.navigate(['']);
+      return false;
     }
-    this.router.navigate(['/auth/login'], this.extras);
-    return false;
+    return true;
   }
 }

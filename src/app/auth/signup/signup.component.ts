@@ -16,6 +16,7 @@ import { User } from '../../models/user/user';
 export class SignupComponent {
   public signUpForm: User;
   public userEmail: string;
+  public takenEmail: boolean = false;
   private foundStatus: number = 302;
 
   constructor(private authService: AuthService, private toastr: ToastrService, private route: ActivatedRoute) { }
@@ -37,10 +38,31 @@ export class SignupComponent {
 
   public passwordsMatch(form: NgForm): boolean {
     if (form.value.password !== form.value.confirmPass) {
-      /* tslint:disable */
-      form.controls['confirmPass'].setErrors({ incorrect: true });
+      form.controls.confirmPass.setErrors({ incorrect: true });
       return true;
     }
     return false;
+  }
+
+  public checkEmail(email: string, form: NgForm): void {
+    if (email !== this.userEmail && form.controls.email.valid) {
+      this.takenEmail = false;
+      this.userEmail = email;
+      this.authService.checkEmail(email).subscribe(
+        (res) => this.takenEmail = false,
+        (error: HttpErrorResponse) => {
+          if (error.status === this.foundStatus) {
+            this.takenEmail = true;
+            form.controls.email.setErrors({ incorrect: true });
+          }
+        },
+      );
+    }
+  }
+
+  public removeErrorIfTaken(form: NgForm): void {
+    if (this.takenEmail) {
+     this.takenEmail = false;
+    }
   }
 }

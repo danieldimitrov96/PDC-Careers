@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuardService as AuthGuard } from '../core/auth-guard/auth-guard.service';
+import { AuthGuardService as AuthGuard } from '../core/guards/auth-guard.service';
 import { CareersComponent } from './careers.component';
 import { JobApplyComponent } from './job-apply/job-apply.component';
 import { JobComponent } from './job/job.component';

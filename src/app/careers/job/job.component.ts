@@ -31,7 +31,11 @@ export class JobComponent {
     this.careersService
       .getCurrentJob(this.id)
       .subscribe((data) => {
-        this.job = data;
+        if (data.status === 'Active' || this.isAdmin) {
+          this.job = data;
+        } else {
+          this.router.navigate(['']);
+        }
       });
   }
 

@@ -4,23 +4,33 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()" content-type="multipart/form-data">
       <div class="form-group">
         <label for="firstName">First Name</label>
-        <input type="text" class="form-control" id="firstName" placeholder="Enter your first name" formControlName="firstName">
+        <input type="text" #fName class="form-control" id="firstName" placeholder="Enter your first name" formControlName="firstName">
+        <span class="text-danger align-middle" *ngIf="this.form.get('firstName').invalid && this.form.get('firstName').touched && this.form.get('firstName').dirty">
+          Name must be between 3-100 characters and with no numbers
+        </span>
       </div>
+
       <div class="form-group">
         <label for="lastName">Last Name</label>
         <input type="text" class="form-control" id="lastName" placeholder="Enter your last name" formControlName="lastName">
+        <span class="text-danger align-middle" *ngIf="this.form.get('lastName').invalid && this.form.get('lastName').touched && this.form.get('lastName').dirty">
+          Last Name must be between 3-100 characters and with no numbers
+        </span>
       </div>
       <div class="form-group">
         <label for="comment">Comment</label>
-        <textarea type="text" class="form-control" id="comment" placeholder="Place down any comments" formControlName="comment" style="resize: none"
+        <textarea type="text" class="form-control" id="comment" placeholder="Place down any comments (max 1024 chars)" formControlName="comment" style="resize: none"
           rows="5"></textarea>
+        <span class="text-danger align-middle" *ngIf="this.form.get('comment').invalid && this.form.get('comment').touched && this.form.get('comment').dirty">
+          No more than 1024 characters allowed
+        </span>
       </div>
       <div class="form-group">
         <label for="CV" class="btn btn-sm uploadButtons">Upload CV</label>
         <input style="display:none;" type="file" id="CV" (change)="onFileChange($event)" #CV accept=".pdf,.doc,.docx">
         <p>{{form.get('CV').value.name}}</p>
       </div>
-      
+
       <div class="form-group">
         <label for="CoverLetter" class="btn btn-sm uploadButtons">Upload Cover Letter</label>
         <input style="display:none;" type="file" id="CoverLetter" (change)="onFileChange($event)" #CoverLetter accept=".pdf,.doc,.docx">

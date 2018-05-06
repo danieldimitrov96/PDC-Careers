@@ -4,4 +4,5 @@ export class JobModel {
     public description: string;
     public category: string;
     public createdAt: number;
+    public status: string;
 }
