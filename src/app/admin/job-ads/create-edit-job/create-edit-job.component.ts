@@ -39,8 +39,8 @@ export class CreateEditJobComponent implements OnInit {
     ],
   };
   private minLength = 4;
+  private minDescrLength = 11;
   private maxTitleLength = 256;
-  private maxDescrLength = 16384;
   private foundStatus = 302;
   private errorStatus = 403;
   private toastrTimeoutInMs = 2000;
@@ -73,7 +73,7 @@ export class CreateEditJobComponent implements OnInit {
   public createForm(): void {
     this.form = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(this.minLength), Validators.maxLength(this.maxTitleLength)]],
-      description: ['', [Validators.required, Validators.minLength(this.minLength), Validators.maxLength(this.maxDescrLength)]],
+      description: ['', [Validators.required, Validators.minLength(this.minDescrLength)]],
       category: ['', Validators.required],
       status: ['', Validators.required],
     });

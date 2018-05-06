@@ -3,7 +3,7 @@
     <h2 class="containerTitle">All Job Ads</h2>
   </div>
   <div (click)="onCreate()" class="btn btn-secondary">Create</div>
-  <div *ngIf="dataSource?.data.length !== 0" class="example-container mat-elevation-z8">
+  <div *ngIf="dataSource?.data.length !== 0; else nodata" class="example-container mat-elevation-z8">
     <div class="example-header">
       <mat-form-field>
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
@@ -52,4 +52,7 @@
     <mat-paginator *ngIf="allJobs?.length > 10" [pageSizeOptions]="[10,20,100]"></mat-paginator>
 
   </div>
+  <ng-template #nodata>
+    <h3>No data available</h3>
+  </ng-template>
 </div>

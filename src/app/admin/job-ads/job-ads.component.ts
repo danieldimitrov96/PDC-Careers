@@ -19,6 +19,7 @@ export class JobAdsComponent implements OnInit {
   public allJobs: SingleJobModel[];
   public displayedColumns = ['id', 'title', 'status', 'createdAt', 'actions'];
   public dataSource = new MatTableDataSource<SingleJobModel>();
+  public nodata;
 
   @ViewChild(MatSort) public sort: MatSort;
   @ViewChild(MatPaginator) public paginator: MatPaginator;

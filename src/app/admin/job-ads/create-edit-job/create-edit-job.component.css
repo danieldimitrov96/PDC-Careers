@@ -2,12 +2,13 @@
   padding-top: 5%;
 }
 
-.fields label {
+.title {
   color: #fed136;
-  font-size: 1.2em;
 }
 
-
+.fields label {
+  font-size: 1.2em;
+}
 
 .container{
   padding-top: 3%;

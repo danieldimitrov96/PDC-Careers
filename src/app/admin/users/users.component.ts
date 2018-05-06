@@ -14,6 +14,7 @@ export class UsersComponent implements OnInit {
   public allUsersSorted: SingleUserModel[];
   public displayedColumns = ['id', 'email', 'totalApplications', 'createdAt'];
   public dataSource = new MatTableDataSource<SingleUserModel>();
+  public nodata;
 
   @ViewChild(MatSort) public sort: MatSort;
   @ViewChild(MatPaginator) public paginator: MatPaginator;
