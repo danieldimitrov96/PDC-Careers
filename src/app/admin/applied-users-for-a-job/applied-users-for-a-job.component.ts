@@ -18,7 +18,7 @@ import { IAppliedUsers, IJobModelAdmin } from '../models/IJobModelAdmin/IJobMode
 })
 export class AppliedUsersForAJobComponent implements OnInit {
 
-  public displayedColumns = ['_id', 'fullName', 'comment', 'createdAt', 'download'];
+  public displayedColumns = ['_id', 'fullName', 'comment', 'email', 'createdAt', 'download'];
   public dataSource: MatTableDataSource < IApplication > ;
 
   @ViewChild(MatPaginator) public paginator: MatPaginator;
@@ -42,6 +42,7 @@ export class AppliedUsersForAJobComponent implements OnInit {
         this.id = x.id;
       });
     this.applicationService.getApplicationWithJobId(this.id).subscribe((data: IApplicationData) => {
+      console.log(data);
       this.dataSource = new MatTableDataSource(data.context);
       this.jobTitle = data.title;
       setTimeout(() => {

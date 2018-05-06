@@ -4,7 +4,7 @@
     <form (ngSubmit)="onSubmit(f)" #f="ngForm">
       <div class="form-group">
         <label for="name">Name</label>
-        <input class="form-control" id="name" pattern=".{3,120}" [(ngModel)]="editObj.name" name="name" required>
+        <input class="form-control" id="name" pattern=".{3,128}" [(ngModel)]="editObj.name" name="name" required>
       </div>
       <div class="form-group">
         <label for="link">Link target</label>

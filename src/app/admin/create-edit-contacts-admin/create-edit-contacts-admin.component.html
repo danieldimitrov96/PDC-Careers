@@ -5,7 +5,7 @@
   
         <div class="form-group">
           <label for="name">Name</label>
-          <input  class="form-control" id="name" pattern=".{3,120}"
+          <input  class="form-control" id="name" pattern=".{2,128}"
           [(ngModel)]="editObj.name"
           name="name"
           required>
@@ -13,7 +13,7 @@
   
         <div class="form-group">
           <label for="address">Address</label>
-          <input type="text" class="form-control" id="address"
+          <input type="text" class="form-control" id="address" pattern=".{2,1024}"
           [(ngModel)]="editObj.address"
           name="address"
           required>
