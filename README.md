@@ -14,20 +14,27 @@ These instructions will get you a copy of the project up and running on your loc
 ```
 Download the repository and unzip it in a folder of your choice.
 ```
-
-### Installing
+## Before you run the application, you must run the [Server](https://github.com/shdwskip/PDC-Careers-Server)
 
 ```
-cd PDC-Careers
-npm i
+After successfully running the server, you should have two users to test the application:
+    - admin1@pdc.com; password: 87654321;
+    - john_doe@pdc.com; password: 12345678; 
+```
+
+### Installing
+```
+Go to the unzipped folder and open a terminal
+Run npm install
 ng serve -aot
 ```
 
 You should see a message on the console 'Compiled successfully.'
 
-**Instructions on how to run the server:**
-- *[Server instructions](https://github.com/shdwskip/PDC-Careers-Server)*
-
+## Testing
+```
+Run ng test
+```
 
 ## Authors and Contributors
 
