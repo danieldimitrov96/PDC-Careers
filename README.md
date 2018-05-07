@@ -7,9 +7,6 @@ __Organization:__ [Telerik](http://telerikacademy.com/) JS Alpha Nov-2017
 **App Type:** This is a Single Page Web Application using backend and frontend technologies.  
 **Short functional description:** Careers web application for internal use. Clients can apply for active jobs after login in. Administrators can dynamically make CRUD operations on careers, buttons and contacts. Also, admins can view career applications(download CVs and cover letters) and all users registered.
 
-**Instructions on how to run the server:**
-- *[Server instructions](https://github.com/shdwskip/PDC-Careers-Server)*
-
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
@@ -26,10 +23,11 @@ npm i
 ng serve -aot
 ```
 
+You should see a message on the console 'Compiled successfully.'
+
 **Instructions on how to run the server:**
 - *[Server instructions](https://github.com/shdwskip/PDC-Careers-Server)*
 
-You should see a message on the console 'Angular CLI doing its job'
 
 ## Authors and Contributors
 
