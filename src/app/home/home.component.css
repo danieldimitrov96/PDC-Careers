@@ -2,35 +2,34 @@
   padding-top: 3%;
 }
 
-.intro-text{
+.intro-text {
   padding-top: 100px !important;
 }
-/* .backgroundHome {
-  background-image: url('./../../assets/back-ground.jpeg');
-} */
+
+.homeText {
+  color: white;
+}
 
 .btn-xl {
   margin: 10px;
 }
-.border{
+
+.border {
   border: thick 1px yellow !important;
   border-radius: 1px solid;
   border-color: yellow;
-  width:400px;
+  width: 400px;
   height: 330px;
-  display:flex;
-  align-items:center;  
+  display: flex;
+  align-items: center;
   padding: 0 !important;
   margin-top: 20px;
 }
 
-
-.zeroPadding{
+.zeroPadding {
   padding: 0 !important;
-  
 }
 
-
-    iframe {
-      padding-top: 20px;
-  }
+iframe {
+  padding-top: 20px;
+}

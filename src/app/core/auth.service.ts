@@ -23,7 +23,7 @@ export class AuthService {
               private storageService: StorageService) { }
 
   public checkEmail(email: string): Observable<object> {
-    return this.http.get(`${this.appConfig.apiUrl}/checkEmail/${email}`); // .map((res) => res.json());
+    return this.http.get(`${this.appConfig.apiUrl}/checkEmail/${email}`);
   }
 
   public loginOrSignup(user: User, route: string, returnUrl: Params): Observable<UserSignupModel> {
